@@ -32,8 +32,12 @@ export class LoginContainer extends Component {
     }
   }
 
+
   onSubmit(e) {
     e.preventDefault()
+    if (this.refs.email.value || this.refs.password.value === '') {
+      return
+    }
     this.props.login(this.refs.email.value, this.refs.password.value)
   }
 

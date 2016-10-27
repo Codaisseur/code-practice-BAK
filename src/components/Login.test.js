@@ -54,8 +54,8 @@ describe('<LoginContainer />', () => {
 
     it('should not call login() upon submitting the form without values', () => {
       loginSpy.reset()
-      wrapper.ref('email').get(0).value = ''
-      wrapper.ref('password').get(0).value = ''
+      wrapper.ref('email').get(0).value = null
+      wrapper.ref('password').get(0).value = null
       wrapper.simulate('submit')
       expect(wrapper.props().login).not.to.have.been.called()
     })
