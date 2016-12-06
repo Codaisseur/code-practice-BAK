@@ -20,7 +20,6 @@ function select(state, ownProps) {
 export class ResetPasswordContainer extends Component {
   componentWillMount() {
     const { passwordIsReset, replace } = this.props
-    console.log(this.props)
     if (passwordIsReset) {
       replace('/')
     }
