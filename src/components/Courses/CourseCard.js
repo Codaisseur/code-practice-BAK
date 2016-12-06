@@ -12,24 +12,25 @@ class CourseCard extends PureComponent {
     const coursesPath = routes.coursesPath
 
     return(
-      <Card key={ name } className="card">
-        <CardHeader
-          className="title"
-          title={ name }
-        />
-
-        <CardText>
-          Random description
-        </CardText>
-
-        <CardActions className="actions">
-          <NavButton
-            label="Go to course"
-            to={ `${coursesPath}/${courseId}` }
+      <div className="card">
+        <Card key={ name }>
+          <CardHeader
+            className="title"
+            title={ name }
           />
-          {this.props.cardAction}
-        </CardActions>
-      </Card>
+
+          <CardText>
+            Random description
+          </CardText>
+
+          <CardActions className="actions">
+            <NavButton
+              label="Go to course"
+              to={ `${coursesPath}/${courseId}` }
+            />
+          </CardActions>
+        </Card>
+      </div>
     )
   }
 }

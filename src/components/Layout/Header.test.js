@@ -13,7 +13,7 @@ const props = (overrideProps) => {
   }, overrideProps || {})
 }
 
-describe('<Header/>', () => {
+describe('<Header />', () => {
   const header = wrapper(<Header { ...props() } />)
 
   it('contains a header', () => {
