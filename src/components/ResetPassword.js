@@ -5,8 +5,8 @@ import Api from '~/middleware/api'
 import routes from '~/middleware/routes'
 import { Link } from 'react-router'
 
-import { resetPassword } from '~/actions/user'
 import { clearErrors } from '~/actions/errors'
+import { resetPassword } from '~/actions/user'
 
 function select(state, ownProps) {
   const passwordIsReset = state.user.passwordIsReset || false
@@ -17,7 +17,7 @@ function select(state, ownProps) {
   }
 }
 
-class ResetPasswordContainer extends Component {
+export class ResetPasswordContainer extends Component {
   componentWillMount() {
     const { passwordIsReset, replace } = this.props
     console.log(this.props)
