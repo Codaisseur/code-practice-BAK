@@ -1,14 +1,56 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
+
+
+// Material UI Components
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
+import RaisedButton from 'material-ui/RaisedButton'
+import { List, ListItem } from 'material-ui/List'
+
+// Styles
+import './AssignmentsContainer.sass'
 
 class AssignmentsContainer extends Component {
+
+  renderAssignments() {
+    return this.props.assignments.map((assignment) => {
+      return(
+        <ListItem key={assignment.id}>
+          <Link to={"/"}>{assignment.title}</Link>
+          <span>{assignment.progress}</span>
+        </ListItem>
+      )
+    });
+  }
+
   render() {
     return (
       <div>
+        <Card className="assignment-card">
+          <CardHeader title="course.name" />
+          <CardActions>
+            <RaisedButton label="Start" />
+          </CardActions>
+        </Card>
+
         <h1>Assignments</h1>
       </div>
 
-    )
+
+        <List>
+          <ListItem>{this.renderAssignments()}</ListItem>
+        </List>
+      </div>
+    );
+  }
+
+}
+
+function mapStateToProps(state) {
+  return {
+    assignments: state.assignments
   }
 }
 
-export default AssignmentsContainer
+export default connect(mapStateToProps)(AssignmentsContainer)
