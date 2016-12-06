@@ -1,37 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import routes from '~/middleware/routes'
-
+import CourseCard from './CourseCard'
 import NavButton from '../UI/buttons/NavButton'
-import { Card, CardHeader, CardActions, CardText } from 'material-ui/Card'
 
-import './CourseCard.sass'
+const coursesPath = routes.coursesPath
 
 class CoursesContainer extends Component {
   renderCourses() {
-
-    const coursesPath = routes.coursesPath
-
     return this.props.courses.map((course) => {
       return (
-        <Card key={ course.name } className="card">
-          <CardHeader
-            className="title"
-            title={course.name}
-          />
-
-          <CardText>
-            Random description
-          </CardText>
-
-          <CardActions className="actions">
-            <NavButton
-              label="Go to course"
-              to={ `${coursesPath}/${course.courseId}` }
-            />
-            {this.props.cardAction}
-          </CardActions>
-        </Card>
+        <CourseCard key={ course.name } className="card" { ...course }/>
       )
     })
   }
@@ -40,9 +19,13 @@ class CoursesContainer extends Component {
     return (
       <div>
         <h3>Courses</h3>
-        <ul>
+        <div>
           { this.renderCourses() }
-        </ul>
+        </div>
+        <NavButton
+          label="Add a New Course"
+          to={ `${coursesPath}/new` }
+        />
       </div>
     )
   }
