@@ -46,8 +46,7 @@ describe('<ResetPasswordContainer />', () => {
    it('should call resetPassword() upon submitting the form with values', () => {
      wrapper.ref('email').get(0).value = 'kees'
      wrapper.simulate('submit')
-     expect(wrapper.props().resetPassword).to.have.been.called()
-       .with.exactly('kees')
+     expect(resetSpy).to.have.been.called.with('kees')
    })
  })
 })

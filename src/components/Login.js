@@ -65,23 +65,29 @@ export class LoginContainer extends Component {
       <form onSubmit={this.onSubmit.bind(this)}>
         <h2>Please sign in</h2>
         <TextField
-          hintText="Enter your email" id="email" type="email" ref="email"
-        /><br />
+          hintText="Enter your email"
+          id="email"
+          type="email"
+          ref="email" />
         <br />
+
         <TextField
-          hintText="Enter your password." id="password" type="password" ref="password"
-        /><br />
+          hintText="Enter your password."
+          id="password"
+          type="password"
+          ref="password" />
+        <br />
 
 
-         <RaisedButton label="Forgot my password" href="/reset-password" primary={true} />
         <RaisedButton
-          label="SIGN IN"
-          labelPosition="before"
+          label="Forgot my password"
+          href="/reset-password"
+          primary={true} />
+
+        <RaisedButton
+          label="Sign in"
           style={styles.button}
-          containerElement="label"
-        >
-          <input type="Submit" defaultValue="Sign in" style={styles.exampleImageInput} />
-        </RaisedButton>
+          onClick={this.onSubmit.bind(this)} />
       </form>
     )
   }
