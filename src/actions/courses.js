@@ -1,8 +1,8 @@
-export const ADD_COURSE = 'ADD_COURSE'
+export const CREATE_COURSE = 'CREATE_COURSE'
 
 export default (newCourse) => {
   return {
-    type: ADD_COURSE,
+    type: CREATE_COURSE,
     payload: newCourse
   }
 }

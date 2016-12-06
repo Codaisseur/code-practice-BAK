@@ -1,4 +1,4 @@
-import { ADD_COURSE } from '../actions/courses'
+import { CREATE_COURSE } from '../actions/courses'
 
 const initialState = [
   { courseId: 1, name: 'Ruby' },
@@ -11,7 +11,7 @@ const initialState = [
 
 export default (state = initialState, { type, payload } = {}) => {
   switch(type) {
-    case ADD_COURSE:
+    case CREATE_COURSE:
       return state.concat(payload)
 
     default:

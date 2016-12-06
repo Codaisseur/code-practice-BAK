@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import addCourse from '../../actions/courses'
+import createCourse from '../../actions/courses'
 
-export class CoursesNew extends Component {
+export class CreateCourse extends Component {
+
   save(event) {
     event.preventDefault()
 
-    const { addCourse } = this.props
+    const { createCourse } = this.props
     const name = this.refs.name.value
-    const courseId = this.refs.name.value
 
     const newCourse = {
-      name: name
+      name: name,
     }
-    addCourse(newCourse)
+
+    createCourse(newCourse)
     console.log(newCourse)
   }
 
@@ -32,4 +33,4 @@ export class CoursesNew extends Component {
   }
 }
 
-export default connect(null, { addCourse })(CoursesNew)
+export default connect(null, { createCourse })(CreateCourse)
