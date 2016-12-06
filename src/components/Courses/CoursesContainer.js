@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-
 class CoursesContainer extends Component {
   renderCourses() {
     return this.props.courses.map((course) => {
       return (
-        <Link to={ "courses/" + course.courseId } key={ course.courseId }>
+        <Link to={ 'courses/' + course.courseId } key={ course.courseId }>
           <li>{ course.name }</li>
         </Link>
       )

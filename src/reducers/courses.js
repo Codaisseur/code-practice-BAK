@@ -1,3 +1,5 @@
+import { ADD_COURSE } from '../actions/courses'
+
 const initialState = [
   { courseId: 1, name: 'Ruby' },
   { courseId: 2, name: 'JavaScript' },
@@ -7,6 +9,12 @@ const initialState = [
 ]
 
 
-export default (state = initialState, action) => {
-  return state
+export default (state = initialState, { type, payload } = {}) => {
+  switch(type) {
+    case ADD_COURSE:
+      return state.concat(payload)
+
+    default:
+      return state
+  }
 }
