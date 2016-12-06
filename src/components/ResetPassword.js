@@ -17,7 +17,7 @@ function select(state, ownProps) {
   }
 }
 
-class ResetPasswordContainer extends Component {
+export class ResetPasswordContainer extends Component {
   componentWillMount() {
     const { passwordIsReset, replace } = this.props
     console.log(this.props)
