@@ -26,6 +26,7 @@ class CourseCard extends PureComponent {
           <CardActions className="actions">
             <NavButton
               label="Go to course"
+              primary={true}
               to={ `${coursesPath}/${courseId}` }
             />
           </CardActions>

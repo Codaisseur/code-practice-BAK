@@ -17,15 +17,19 @@ class CoursesContainer extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Courses</h3>
-        <div>
+      <div className="container courses">
+        <section className="contained heading">
+          <h1>Courses</h1>
+        </section>
+        <section className="contained-grid">
           { this.renderCourses() }
-        </div>
+        </section>
+
         <NavButton
           label="Add a New Course"
           to={ `${coursesPath}/new` }
         />
+
       </div>
     )
   }
