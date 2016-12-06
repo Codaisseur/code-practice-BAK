@@ -5,8 +5,32 @@ import Api from '~/middleware/api'
 import routes from '~/middleware/routes'
 import { Link } from 'react-router'
 
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import './ResetPassword.sass'
+
+
 import { clearErrors } from '~/actions/errors'
 import { resetPassword } from '~/actions/user'
+
+// Styling for the buttons
+const styles = {
+  button: {
+    margin: 12,
+  },
+  ResetPassword: {
+    cursor: 'pointer',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    width: '100%',
+    opacity: 0,
+  },
+};
+
+ // end button styling
 
 function select(state, ownProps) {
   const passwordIsReset = state.user.passwordIsReset || false
@@ -58,12 +82,23 @@ export class ResetPasswordContainer extends Component {
           Please submit your email address and we will try to find your account
           and send you a link to reset your password.
         </p>
-        <label htmlFor="email">Email:</label>
-        <input id="email" type="email" ref="email" />
+
+        <TextField
+          hintText="Your e-mail" id="email" type="email" ref="email"
+        />
         { this.renderFormErrors('email') }
         <br/>
-        <Link to={routes.loginPath}>Sign in</Link>
-        <input type="Submit" defaultValue="Reset password" />
+        <RaisedButton label="Log in" primary={true} href={routes.loginPath} />
+
+        <RaisedButton
+          label="RESET"
+          labelPosition="before"
+          style={styles.button}
+          containerElement="label"
+        >
+          <input type="Submit" defaultValue="Reset password" style={styles.ResetPassword} />
+        </RaisedButton>
+
       </form>
     )
   }
