@@ -1,12 +1,12 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import wrapper from '~/../test/component-wrapper'
 import chai, { expect } from 'chai'
 import chaiEnzyme from 'chai-enzyme'
 import { App } from './App'
 
 chai.use(chaiEnzyme())
 
-const element = shallow(<App />)
+const element = wrapper(<App />)
 
 describe('<App />', () => {
   it('has a wrapping div tag', () => {
