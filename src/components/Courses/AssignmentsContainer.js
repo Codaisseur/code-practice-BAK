@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-
 // Material UI Components
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -17,7 +16,7 @@ class AssignmentsContainer extends Component {
     return this.props.assignments.map((assignment) => {
       return(
         <ListItem key={assignment.id}>
-          <Link to={"/"}>{assignment.title}</Link>
+          <Link to={'/'}>{assignment.title}</Link>
           <span>{assignment.progress}</span>
         </ListItem>
       )
@@ -26,13 +25,11 @@ class AssignmentsContainer extends Component {
 
   render() {
     return (
-      <div>
-        <Card className="assignment-card">
-          <CardHeader title="course.name" />
-          <CardActions>
-            <RaisedButton label="Start" />
-          </CardActions>
-        </Card>
+      <Card className="container-assignments">
+        <CardHeader title="course.name" />
+        <CardActions>
+          <RaisedButton label="Start" />
+        </CardActions>
 
         <h1>Assignments</h1>
       </div>
@@ -41,10 +38,9 @@ class AssignmentsContainer extends Component {
         <List>
           <ListItem>{this.renderAssignments()}</ListItem>
         </List>
-      </div>
+      </Card>
     );
   }
-
 }
 
 function mapStateToProps(state) {
