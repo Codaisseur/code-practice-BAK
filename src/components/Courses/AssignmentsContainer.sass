@@ -1,2 +1,59 @@
 @import "../../assets/styles/base/colors"
 @import "../../assets/styles/base/mixins"
+@import "../../assets/styles/base/breakpoints"
+
+.container.assignment
+  .heading
+    @include border-bottom
+    padding-bottom: 1.2em
+    margin-bottom: 2em
+    display: flex
+    justify-content: space-between
+
+  .left-items-wrapper
+    color: $darkGrey !important
+    font-size: 16px !important
+
+  .right-items-wrapper
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    margin-top: auto
+    padding-bottom: 6px
+
+  .score-wrapper
+    display: flex
+
+    .percentage
+      margin-top: 0 !important
+      padding-left: 10px
+      color: $darkGrey !important
+
+    .progress-bar
+      padding-top: 10px !important
+      margin-top: 4px !important
+      width: 100px !important
+      background-color: $grey !important
+      color: $darkGrey !important
+
+      & > div
+        margin-top: -10px
+        padding-top: 10px !important
+        background-color: $green !important
+        transition-delay: 0.8s !important
+
+      @include breakpoint($breakpoint-medium)
+        width: 300px !important
+
+.page-container
+  display: flex
+  flex-wrap: wrap
+
+  .page-content
+    order: -1
+    flex: 1 100%
+
+  @include breakpoint($breakpoint-medium)
+    .page-content
+      flex: 1
+      order: 0

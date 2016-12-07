@@ -12,33 +12,32 @@ import './AssignmentsContainer.sass'
 
 class AssignmentsContainer extends Component {
 
-  renderAssignments() {
-    return this.props.assignments.map((assignment) => {
-      return(
-        <ListItem key={assignment.id}>
-          <Link to={'/'}>{assignment.title}</Link>
-          <span>{assignment.progress}</span>
-        </ListItem>
-      )
-    });
-  }
-
   render() {
     return (
-      <Card className="container-assignments">
-        <CardHeader title="course.name" />
-        <CardActions>
-          <RaisedButton label="Start" />
-        </CardActions>
+      <div className="container assignment">
 
-        <h1>Assignments</h1>
+        <section className="contained heading">
+          <div className="left-items-wrapper">
+            <h1>Course Title</h1>
+            <h3>bread crumbs > crumb > crumb</h3>
+          </div>
+
+          <div className="right-items-wrapper">
+            <div className="score-wrapper">
+              <h3 className="progress-bar">LinearProgress bar</h3>
+              <p className="percentage">0%</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="page-container">
+          <h1>LessonSidebar</h1>
+          <main className="contained page-content">
+            Assignment content
+          </main>
+        </section>
+
       </div>
-
-
-        <List>
-          <ListItem>{this.renderAssignments()}</ListItem>
-        </List>
-      </Card>
     );
   }
 }
