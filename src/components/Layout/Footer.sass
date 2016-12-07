@@ -1,0 +1,37 @@
+@import "../../assets/styles/base/colors"
+@import "../../assets/styles/base/breakpoints"
+
+.footer
+  text-align: center
+  margin-top: auto
+  color: $darkGrey50
+
+  ul
+    margin-top: 0 !important
+    padding-left: 0 !important
+
+    li
+      display: inline-block
+      padding-right: 10px
+
+      a
+        text-decoration: none
+        color: $darkGrey50
+
+  p
+    margin: 0
+
+  .footer-container
+    padding: 1.2em
+    border-top: 1px solid $darkGrey50
+    margin: 0 auto
+
+  @include breakpoint($breakpoint-large)
+    .footer-container
+      max-width: 1260px
+      display: flex
+      flex-direction: row
+      justify-content: space-between
+
+      .left-items-wrapper
+        display: flex
