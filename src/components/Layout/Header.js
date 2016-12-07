@@ -28,6 +28,11 @@ import Help from 'material-ui/svg-icons/action/help'
 import './Header.sass'
 
 export class Header extends Component {
+  static propTypes = {
+  logout: PropTypes.func.isRequired,
+  navigateTo: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+}
   constructor() {
     super()
 

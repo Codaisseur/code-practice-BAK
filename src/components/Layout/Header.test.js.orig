@@ -20,8 +20,11 @@ const headerProps = {
      user: {},
    }, overrideProps || {})
  }
+<<<<<<< HEAD
+=======
 
  const element = wrapper(<Header { ...headerProps } />)
+>>>>>>> 7bf716cce03b5583657874f35039b587c95d0c86
 
 
 describe('<Header/>', () => {
