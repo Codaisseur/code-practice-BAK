@@ -21,6 +21,10 @@ const headerProps = {
    }, overrideProps || {})
  }
 
+ const element = wrapper(<Header { ...headerProps } />)
+
+
+describe('<Header/>', () => {
   it('contains a header', () => {
     expect(element).to.have.tagName('header')
     expect(element).to.have.className('header')

@@ -13,10 +13,6 @@ const headerProps = {
   user: {},
  }
 
-<<<<<<< f69558c7cd79d9622acf571011b85c4dbf741cbd
-describe('<Header />', () => {
-  const header = wrapper(<Header { ...props() } />)
-=======
  const props = (overrideProps) => {
    return Object.assign({}, {
      logout: chai.spy(),
@@ -24,9 +20,11 @@ describe('<Header />', () => {
      user: {},
    }, overrideProps || {})
  }
+<<<<<<< HEAD
+=======
 
  const element = wrapper(<Header { ...headerProps } />)
->>>>>>> Fixed warnings and rewrote tests
+>>>>>>> 7bf716cce03b5583657874f35039b587c95d0c86
 
 
 describe('<Header/>', () => {
