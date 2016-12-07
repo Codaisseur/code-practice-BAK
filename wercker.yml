@@ -41,4 +41,5 @@ deploy:
     - script:
         name: npm run deploy
         code: |
+          pip install --upgrade awscli
           npm run deploy
