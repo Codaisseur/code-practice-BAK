@@ -3,7 +3,9 @@ import { ADD_ASSIGNMENT } from '../actions/assignments'
 
 const initialState = [
   {
-    text: 'Ruby on Rails'
+    id: 1,
+    title: 'Ruby on Rails',
+    text: 'Have a look at this exercise!'
   }
 ]
 
@@ -13,7 +15,7 @@ export default function assignments(state = initialState, action) {
       return [
         ...state,
         {
-          text: action.text
+          text: action.text,
         }
       ]
     default:

@@ -12,6 +12,17 @@ import './AssignmentsContainer.sass'
 
 class AssignmentsContainer extends Component {
 
+  renderAssignments() {
+    return this.props.assignments.map((assignment) => {
+      return (
+        <Card key={assignment.id}>
+          <h1>{assignment.title}</h1>
+          <p>{assignment.text}</p>
+        </Card>
+      )
+    });
+  }
+
   render() {
     return (
       <div className="container assignment">
@@ -31,9 +42,9 @@ class AssignmentsContainer extends Component {
         </section>
 
         <section className="page-container">
-          <h1>LessonSidebar</h1>
+          <h1>Assignments Sidebar</h1>
           <main className="contained page-content">
-            Assignment content
+            {this.renderAssignments()}
           </main>
         </section>
 

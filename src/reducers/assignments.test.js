@@ -13,7 +13,9 @@ describe('assignments reducer', () => {
       assignments(undefined, {})
     ).to.eql([
       {
-        text: 'Ruby on Rails',
+        id: 1,
+        title: 'Ruby on Rails',
+        text: 'Have a look at this exercise!'
       }
     ])
   })
