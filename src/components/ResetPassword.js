@@ -18,6 +18,11 @@ function select(state, ownProps) {
 }
 
 export class ResetPasswordContainer extends Component {
+  static propTypes = {
+  resetPassword: PropTypes.func.isRequired,
+  replace: PropTypes.func.isRequired,
+}
+
   componentWillMount() {
     const { passwordIsReset, replace } = this.props
     if (passwordIsReset) {

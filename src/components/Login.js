@@ -35,6 +35,12 @@ function select(state, ownProps) {
 }
 
 export class LoginContainer extends Component {
+  static propTypes = {
+  login: PropTypes.func.isRequired,
+  replace: PropTypes.func.isRequired,
+}
+
+
   componentWillMount() {
     const { isAuthenticated, replace, redirect } = this.props
     if (isAuthenticated) {

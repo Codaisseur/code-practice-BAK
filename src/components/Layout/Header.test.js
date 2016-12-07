@@ -7,29 +7,38 @@ chai.use(chaiEnzyme())
 import wrapper from '~/../test/component-wrapper'
 import { Header } from './Header'
 
-const props = (overrideProps) => {
-  return Object.assign({}, {
-    user: {},
-  }, overrideProps || {})
-}
+const headerProps = {
+  logout: chai.spy(),
+  navigateTo: chai.spy(),
+  user: {},
+ }
+
+ const props = (overrideProps) => {
+   return Object.assign({}, {
+     logout: chai.spy(),
+     navigateTo: chai.spy(),
+     user: {},
+   }, overrideProps || {})
+ }
+
+ const element = wrapper(<Header { ...headerProps } />)
+
 
 describe('<Header/>', () => {
-  const header = wrapper(<Header { ...props() } />)
-
   it('contains a header', () => {
-    expect(header).to.have.tagName('header')
-    expect(header).to.have.className('header')
+    expect(element).to.have.tagName('header')
+    expect(element).to.have.className('header')
   })
 
   it('does not render the Admin menu', () => {
-    expect(header.find('.AdminMenu').length).to.equal(0)
+    expect(element.find('.AdminMenu').length).to.equal(0)
   })
 
   context('for Admins', () => {
-    const header = wrapper(<Header { ...props({adminAvailable: true}) } />)
+    const Admin = wrapper(<Header { ...props({logtout: chai.spy(), navigateTo: chai.spy(), adminAvailable: true}) } />)
 
     it('renders the Admin menu', () => {
-      expect(header.find('.AdminMenu').length).to.equal(1)
+      expect(Admin.find('.AdminMenu').length).to.equal(1)
     })
   })
 })
