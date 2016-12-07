@@ -31,16 +31,9 @@ describe('<ResetPasswordContainer />', () => {
      expect(emailLabel.text()).to.equal('Email:')
    })
 
- it('has two input fields', () => {
-   expect(element.find('input')).to.have.length(2)
+ it('has one input fields', () => {
+   expect(element.find('input')).to.have.length(1)
  })
-
- it('renders children when passed in', () => {
-  const wrapper = mount(<ResetPasswordContainer {...resetProps} />)
-  expect(wrapper.ref('email')).to.have.tagName('input')
-  expect(wrapper.ref('email').prop('id')).to.equal('email')
-  expect(wrapper.ref('email').prop('type')).to.equal('email')
-})
 
   describe('form submission', () => {
    const resetSpy = chai.spy()

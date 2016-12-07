@@ -88,19 +88,23 @@ export class ResetPasswordContainer extends Component {
         </p>
 
         <TextField
-          hintText="Your e-mail" id="email" type="email" ref="email"
-        />
+          hintText="Email:"
+          id="email"
+          type="email"
+          ref="email" />
+        <br />
         { this.renderFormErrors('email') }
-        <br/>
+
         <RaisedButton label="Log in" primary={true} href={routes.loginPath} />
 
         <RaisedButton
           label="RESET"
           labelPosition="before"
           style={styles.button}
-          containerElement="label"
+          onClick={this.onSubmit.bind(this)}
+
         >
-          <input type="Submit" defaultValue="Reset password" style={styles.ResetPassword} />
+          
         </RaisedButton>
 
       </form>
