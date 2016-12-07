@@ -48,6 +48,7 @@ import Login from './components/Login'
 import ResetPassword from './components/ResetPassword'
 
 import CoursesContainer from './components/Courses/CoursesContainer'
+import CreateCourse from './components/Courses/CreateCourse'
 import AssignmentsContainer from './components/Courses/AssignmentsContainer'
 
 import NotFound from './NotFound'
@@ -70,8 +71,9 @@ ReactDOM.render(
         <IndexRoute component={Home} />
         <Route path={routes.loginPath} component={Login} />
         <Route path={routes.resetPasswordPath} component={ResetPassword} />
-        <Route path={routes.coursesPath} component={userIsAuthenticated(CoursesContainer)} />
-        <Route path={`${routes.coursesPath}/:courseId`} component={userIsAuthenticated(AssignmentsContainer)} />
+        <Route path={routes.coursesPath} component={CoursesContainer} />
+        <Route path={`${routes.coursesPath}/new`} component={CreateCourse} />
+        <Route path={`${routes.coursesPath}/:courseId`} component={AssignmentsContainer} />
       </Route>
       <Route path="*" component={NotFound}/>
     </Router>
