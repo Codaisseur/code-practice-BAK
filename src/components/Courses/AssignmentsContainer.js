@@ -10,18 +10,10 @@ import { List, ListItem } from 'material-ui/List'
 // Styles
 import './AssignmentsContainer.sass'
 
-class AssignmentsContainer extends Component {
+// Components
+import AssignmentList from './AssignmentList'
 
-  renderAssignments() {
-    return this.props.assignments.map((assignment) => {
-      return (
-        <Card key={assignment.id}>
-          <h1>{assignment.title}</h1>
-          <p>{assignment.text}</p>
-        </Card>
-      )
-    });
-  }
+class AssignmentsContainer extends Component {
 
   render() {
     return (
@@ -42,9 +34,9 @@ class AssignmentsContainer extends Component {
         </section>
 
         <section className="page-container">
-          <h1>Assignments Sidebar</h1>
+
           <main className="contained page-content">
-            {this.renderAssignments()}
+            <AssignmentList />
           </main>
         </section>
 
@@ -53,10 +45,4 @@ class AssignmentsContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    assignments: state.assignments
-  }
-}
-
-export default connect(mapStateToProps)(AssignmentsContainer)
+export default AssignmentsContainer
