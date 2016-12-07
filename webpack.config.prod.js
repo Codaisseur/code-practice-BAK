@@ -7,8 +7,8 @@ module.exports = {
     './src/index'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.join(__dirname, 'dist', 'static'),
+    filename: "bundle-[hash].js",
     publicPath: '/static/'
   },
   plugins: [
@@ -22,13 +22,26 @@ module.exports = {
       compressor: {
         warnings: false
       }
+    }),
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'src')
-    }]
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'src')
+      },
+      { test: /\.woff2?$/,      loader: "url-loader?limit=10000&minetype=application/font-woff" },
+      { test: /\.ttf$/,         loader: "file-loader" },
+      { test: /\.eot$/,         loader: "file-loader" },
+      { test: /\.svg$/,         loader: "file-loader" },
+      { test: /\.(png|gif)$/,   loader: "file-loader" },
+      { test: /\.(sass|scss)$/, loader: 'style!css!sass'},
+      { test: /\.json$/,        loader: "json-loader"}
+
+    ]
   }
 };

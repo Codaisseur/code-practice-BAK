@@ -34,3 +34,11 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
+
+deploy:
+  # Steps executed when the build phase passes on master branches
+  steps:
+    - script:
+        name: npm run deploy
+        code: |
+          npm run deploy
