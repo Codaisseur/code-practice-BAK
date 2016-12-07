@@ -17,10 +17,14 @@ function select(state, ownProps) {
   }
 }
 
-class ResetPasswordContainer extends Component {
+export class ResetPasswordContainer extends Component {
+  static propTypes = {
+  resetPassword: PropTypes.func.isRequired,
+  replace: PropTypes.func.isRequired,
+}
+
   componentWillMount() {
     const { passwordIsReset, replace } = this.props
-    console.log(this.props)
     if (passwordIsReset) {
       replace('/')
     }

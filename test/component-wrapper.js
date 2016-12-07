@@ -9,7 +9,7 @@ export default (node, nodeContext = {}) => {
   let context = Object.assign({}, nodeContext, { store })
   return mount(
     <Provider store={store}>
-      <MuiThemeProvider>
+      <MuiThemeProvider muiTheme={muiTheme}>
         {node}
       </MuiThemeProvider>
     </Provider>, { context })

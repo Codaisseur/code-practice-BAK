@@ -34,3 +34,18 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
+
+deploy:
+  # Steps executed when the build phase passes on master branches
+  steps:
+    - npm-install
+
+    - script:
+        name: install awscli
+        code: |
+          pip install --upgrade awscli
+
+    - script:
+        name: npm run deploy
+        code: |
+          npm run deploy
