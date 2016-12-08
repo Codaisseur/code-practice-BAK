@@ -8,7 +8,7 @@ import './CourseCard.sass'
 
 class CourseCard extends PureComponent {
   render() {
-    const { courseId, name } = this.props
+    const { courseId, name, description } = this.props
     const coursesPath = routes.coursesPath
 
     return(
@@ -20,7 +20,7 @@ class CourseCard extends PureComponent {
           />
 
           <CardText>
-            Random description
+            { description }
           </CardText>
 
           <CardActions className="actions">
