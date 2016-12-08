@@ -44,17 +44,11 @@ We use [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/), and [Enzyme](h
 
 ### Running the tests
 
-To run the tests once, run the default commmand:
+During development, you'll want to be watching for changes and
+rerunning the tests on file changes:
 
 ```
-npm test
-```
-
-During development, you might be more interested in watching for changes and
-rerun the tests on file changes:
-
-```
-npm run test:watch
+docker-compose up test
 ```
 
 ### Writing tests
