@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import { connect } from 'react-redux'
-
 // Material UI Components
 import { Card, CardHeader, CardActions, CardText } from 'material-ui/Card'
 
