@@ -59,14 +59,14 @@ export class SignUpContainer extends Component {
     }
   }
 
-
   onSubmit(e) {
-    e.preventDefault()
-    if ((!this.refs.email.value || this.refs.email.value === '') || (!this.refs.password.value || this.refs.password.value === '')) {
-      return
-    }
-    this.props.sign_up(this.refs.email.value, this.refs.password.value)
-  }
+  e.preventDefault()
+  const { password, passwordConfirmation } = this.refs
+  this.props.createAccount({
+    password: password.getValue(),
+    password_confirmation: passwordConfirmation.getValue(),
+  })
+}
 
   render() {
     return (
@@ -97,9 +97,9 @@ export class SignUpContainer extends Component {
 
         <TextField
           hintText="Password confirmation"
-          id="password_confirmation"
-          type="password_confirmation"
-          ref="password_confirmation"
+          id="password"
+          type="password"
+          ref="password"
           fullWidth={true}
           hintStyle={styles.hintStyle}
           inputStyle={styles.inputStyle}
