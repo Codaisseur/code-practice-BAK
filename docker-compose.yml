@@ -1,5 +1,24 @@
 version: '2'
 services:
+  dev:
+    image: quay.io/codaisseur/codaisseur-ci
+    environment:
+      - FEATHERS_API_URL=http://api:5000
+    volumes:
+      - ./:/app
+    command: npm start --no-deprecation
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+
+  install:
+    image: quay.io/codaisseur/codaisseur-ci
+    volumes:
+      - ./:/app
+    command: npm install
+
+
   api:
     image: quay.io/codaisseur/code-assignments
     entrypoint: ''
