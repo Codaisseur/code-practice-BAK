@@ -34,3 +34,7 @@ class API {
     return this.app.logout()
   }
 }
+
+const Api = new API()
+
+export default Api
