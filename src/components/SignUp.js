@@ -7,7 +7,7 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 import { sign_up } from '~/actions/user'
 
-import './Login.sass'
+import './SignUp.sass'
 
 const styles = {
   button: {
@@ -71,7 +71,8 @@ export class SignUpContainer extends Component {
   render() {
     return (
       <form className="signup-form" onSubmit={this.onSubmit.bind(this)}>
-        <h2>Please sign up</h2>
+        <h1>Codaisseur Reader</h1>
+        <p>Your learning journey starts here.</p>
         <TextField
           hintText="Enter your email"
           id="email"
@@ -84,7 +85,7 @@ export class SignUpContainer extends Component {
         <br />
 
         <TextField
-          hintText="Enter your password."
+          hintText="Enter your password"
           id="password"
           type="password"
           ref="password"

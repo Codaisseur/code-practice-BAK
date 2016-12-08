@@ -28,7 +28,8 @@ describe('<SignUpContainer />', () => {
     expect(sign_up).to.have.descendants('#password_confirmation')
     expect(sign_up).to.have.descendants('#firstname')
     expect(sign_up).to.have.descendants('#lastname')
-
+    expect(sign_up).to.have.descendants('h2')
+    expect(sign_up).to.have.descendants('p')
   })
 
   it('has five input fields', () => {
