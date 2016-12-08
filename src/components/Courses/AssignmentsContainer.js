@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import routes from '~/middleware/routes'
 import { Link } from 'react-router'
@@ -10,6 +10,9 @@ import './AssignmentsContainer.sass'
 import Assignment from './Assignment'
 
 class AssignmentsContainer extends Component {
+  static propTypes = {
+    assignments: PropTypes.array.isRequired,
+  }
 
   renderAssignments() {
     return this.props.assignments.map((assignment) => {
@@ -20,6 +23,7 @@ class AssignmentsContainer extends Component {
   }
 
   render() {
+
     return (
       <div className="container assignment">
 
