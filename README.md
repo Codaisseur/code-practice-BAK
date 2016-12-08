@@ -170,9 +170,17 @@ export default connect(mapStateToProps, ...)
 import { Header } from './Header'
 ```
 
+### Screenshots [WIP]
+Screenshots of the onboarding flow. 
+
+![ScreenShot](https://cloud.githubusercontent.com/assets/20054414/21008268/42327f84-bd41-11e6-8175-059710119151.png)
+![ScreenShot](https://cloud.githubusercontent.com/assets/20054414/21008302/74c14e12-bd41-11e6-918f-e54b9b64f4fa.png)
+![ScreenShot](https://cloud.githubusercontent.com/assets/20054414/21008314/816212fa-bd41-11e6-9877-7ec3ff18e6b0.png)
+![ScreenShot](https://cloud.githubusercontent.com/assets/20054414/21008320/8b3e24bc-bd41-11e6-9e71-2daf80060d83.png)
+
 ------------------
 
-**Student Contributors**: @noraeb • @stefanouweneel • @michfarr
+**Student Contributors**: @noraeb • @stefanouweneel • @michfarr • @Jeffrey-Meesters • @tanjahennis • @adrianabm • @Namoneo 
 **Codaisseur**: @foxycoder
 
 [codaisseur]: https://www.codaisseur.com
