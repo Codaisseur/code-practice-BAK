@@ -91,21 +91,23 @@ export class ResetPasswordContainer extends Component {
           hintText="Email:"
           id="email"
           type="email"
-          ref="email" />
+          ref="email"
+          errorText="errorText" />
         <br />
-        { this.renderFormErrors('email') }
+        { this.renderFormErrors('errorText') }
 
-        <RaisedButton label="Log in" primary={true} href={routes.loginPath} />
+        <RaisedButton
+          label="Log in"
+          primary={true}
+          href={routes.loginPath} />
 
         <RaisedButton
           label="RESET"
           labelPosition="before"
           style={styles.button}
-          onClick={this.onSubmit.bind(this)}
+          onClick={this.onSubmit.bind(this)} />
 
-        >
-          
-        </RaisedButton>
+
 
       </form>
     )

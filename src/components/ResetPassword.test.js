@@ -31,7 +31,7 @@ describe('<ResetPasswordContainer />', () => {
      expect(emailLabel.text()).to.equal('Email:')
    })
 
- it('has one input fields', () => {
+ it('has one input field', () => {
    expect(element.find('input')).to.have.length(1)
  })
 
