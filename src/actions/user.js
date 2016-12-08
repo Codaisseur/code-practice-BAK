@@ -1,12 +1,45 @@
 import { appLoading, appDoneLoading } from './api'
 import api from '../middleware/api'
 
+export const USER_SIGN_UP = 'USER_SIGN_UP'
+export const USER_SIGN_UP_FAILED = 'BACKEND_ERROR'
 export const USER_LOADING = 'USER_LOADING'
 export const USER_LOGGED_IN = 'USER_LOGGED_IN'
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 export const USER_LOGIN_FAILED = 'BACKEND_ERROR'
 export const USER_RESET_PASSWD = 'USER_RESET_PASSWD'
 export const USER_RESET_PASSWD_FAILED = 'BACKEND_ERROR'
+
+export const sign_up = (email, password, password_confirmation, firstname, lastname) => {
+  return (dispatch) => {
+    dispatch(appLoading)
+
+    api.sign_up(email, password, password_confirmation, firstname, lastname)
+      .then((data) => {
+        dispatch(appDoneLoading())
+
+        if (data.error) {
+          dispatch(sign_upFailed(data))
+        } else {
+          dispatch(sign_upSuccesfull(data))
+        }
+      })
+      }
+  }
+
+const sign_upSuccesfull = (data) => {
+  return {
+    type: USER_SIGN_UP,
+    payload: data
+  }
+}
+
+const sign_upFailed = (data) => {
+  return {
+    type: USER_SIGN_UP_FAILED,
+    payload: data
+  }
+}
 
 export const login = (email, password) => {
   return (dispatch) => {
