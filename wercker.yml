@@ -47,7 +47,7 @@ deploy:
         name: npm run deploy
         code: |
           mkdir dist
-          npm run build:clean
+          npm run clean
           npm run build:webpack
           npm run build:copy
           npm run build:sync
