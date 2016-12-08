@@ -47,6 +47,7 @@ deploy:
         name: npm run deploy
         code: |
           mkdir dist
+          ls -lah src/
           npm run clean
           npm run build:webpack
           npm run build:copy
