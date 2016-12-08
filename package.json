@@ -9,7 +9,7 @@
     "build:sync": "aws s3 sync dist/ s3://practice.codaisseur.com",
     "deploy": "npm run build && npm run build:copy && npm run build:sync",
     "build": "npm run clean && npm run build:webpack",
-    "start": "node devServer.js",
+    "start": "node devServer",
     "lint": "eslint src",
     "test": "mocha test/setup.js --recursive src/*.test.js src/**/*.test.js src/**/**/*.test.js",
     "test:watch": "mocha -w test/setup.js --recursive src/*.test.js src/**/*.test.js src/**/**/*.test.js"
