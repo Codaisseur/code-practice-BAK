@@ -41,7 +41,7 @@ build:
     - script:
         name: build the project
         code: |
-          if [ "$WERCKER_GIT_BRANCH" = "master" ]; then npm run build && npm run build:copy fi
+          if [ "$WERCKER_GIT_BRANCH" = "master" ]; then npm run build && npm run build:copy; fi
 
 deploy:
   # Steps executed when the build phase passes on master branches
