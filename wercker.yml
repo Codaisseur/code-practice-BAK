@@ -38,6 +38,11 @@ build:
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
 
+    - script:
+        name: build the project
+        code: |
+          npm run build
+
 deploy:
   # Steps executed when the build phase passes on master branches
   steps:
@@ -46,11 +51,6 @@ deploy:
     - script:
         name: npm run deploy
         code: |
-          echo "Working dir: $(pwd)"
-          ls -lah src/
-          npm run clean
-          mkdir -p dist/static
-          npm run build:webpack
           npm run build:copy
           npm run build:sync
 
