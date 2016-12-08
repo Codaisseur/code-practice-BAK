@@ -70,6 +70,7 @@
     "css-loader": "^0.25.0",
     "eventsource-polyfill": "0.9.6",
     "exports-loader": "^0.6.3",
+    "feathersjs-redux-model": "github:codaisseur/feathersjs-redux-model",
     "file-loader": "^0.9.0",
     "ignore-styles": "^5.0.1",
     "imports-loader": "^0.6.5",
