@@ -38,8 +38,6 @@ build:
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
 
-    - internal/store-container
-
 deploy:
   # Steps executed when the build phase passes on master branches
   steps:
@@ -52,4 +50,5 @@ deploy:
           ls -lah
           echo "WERCKER STEP ROOT: ${WERCKER_STEP_ROOT}"
           ls -lah $WERCKER_STEP_ROOT
+          mkdir dist
           npm run deploy
