@@ -1,8 +1,21 @@
+@import "../assets/styles/base/colors"
+@import "../assets/styles/base/breakpoints"
+@import "../assets/styles/base/mixins"
 
-.content
-  margin-top: 100px
-  text-align: center
-  margin-bottom: auto
+.sign-in-form
+  padding: 8em 2em 2em
 
-#email
-  color: black
+  p
+    margin-bottom: 4em
+    font-size: 18px
+
+  .actions
+    margin-top: 20px
+
+  @include breakpoint($breakpoint-medium)
+    min-width: 600px
+    text-align: center
+    position: fixed
+    top: 30%
+    left: 50%
+    transform: translate(-50%, -50%)
