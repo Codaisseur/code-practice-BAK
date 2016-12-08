@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class Assignment extends Component {
   render() {
-    const { assignmentId, title, text } = this.props
+    const { title } = this.props
 
     return (
         <div>
