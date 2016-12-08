@@ -26,6 +26,14 @@ npm start
 open http://localhost:3000
 ```
 
+To run the API:
+
+```bash
+docker-compose up api
+```
+
+This will start the Feathers API and a Mongodb container.
+
 ## Testing
 
 We use [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/), and [Enzyme](http://airbnb.io/enzyme/docs/api/index.html) to test components.
