@@ -17,18 +17,7 @@ import { resetPassword } from '~/actions/user'
 const styles = {
   button: {
     margin: 12,
-  },
-  ResetPassword: {
-    cursor: 'pointer',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
-    width: '100%',
-    opacity: 0,
-  },
-};
+  };
 
  // end button styling
 
@@ -79,6 +68,9 @@ export class ResetPasswordContainer extends Component {
   }
 
   render() {
+
+    const { formErrors } = this.props
+
     return (
       <form onSubmit={this.onSubmit.bind(this)}>
         <h2>Forgot your password?</h2>
@@ -91,7 +83,7 @@ export class ResetPasswordContainer extends Component {
           hintText="Email:"
           id="email"
           type="email"
-          errorText={ this.renderFormErrors() }
+          errorText={formErrors.email}
           ref="email"
         />
         <br />
