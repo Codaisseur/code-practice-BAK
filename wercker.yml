@@ -43,6 +43,9 @@ build:
         code: |
           if [ "$WERCKER_GIT_BRANCH" = "master" ]; then npm run build && npm run build:copy; fi
 
+  after-steps:
+    - alexblunck/slack@0.1.1
+
 deploy:
   # Steps executed when the build phase passes on master branches
   steps:
