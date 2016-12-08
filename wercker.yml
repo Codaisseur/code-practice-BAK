@@ -46,4 +46,8 @@ deploy:
     - script:
         name: npm run deploy
         code: |
+          echo "WORKING DIR: $(pwd)"
+          ls -lah
+          echo "WERCKER STEP ROOT: ${WERCKER_STEP_ROOT}"
+          ls -lah $WERCKER_STEP_ROOT
           npm run deploy
