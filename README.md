@@ -178,7 +178,6 @@ Screenshots of the onboarding flow.
 ![ScreenShot](https://cloud.githubusercontent.com/assets/20054414/21008314/816212fa-bd41-11e6-9877-7ec3ff18e6b0.png)
 ![ScreenShot](https://cloud.githubusercontent.com/assets/20054414/21008320/8b3e24bc-bd41-11e6-9e71-2daf80060d83.png)
 
-
 ------------------
 
 **Student Contributors**: @noraeb • @stefanouweneel • @michfarr • @Jeffrey-Meesters • @tanjahennis • @adrianabm • @Namoneo 
