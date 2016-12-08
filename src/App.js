@@ -12,19 +12,26 @@ import muiTheme from './assets/styles/theme'
 
 // Components
 import Header from './components/Layout/Header'
-// import Footer from './components/Layout/Footer'
+import Footer from './components/Layout/Footer'
 import Loader from './components/Layout/Loader'
 import RaisedButton from 'material-ui/RaisedButton'
 
 const clearErrorTimeout = 5000
 
 export class App extends Component {
-  constructor() {
-    super()
+  static propTypes = {
+    appError: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
+    errors: PropTypes.array,
   }
 
-  getChildContext() {
-    return { muiTheme }
+  static childContextTypes = {
+    muiTheme: React.PropTypes.object.isRequired,
+  }
+
+  constructor() {
+    super()
   }
 
   renderErrors() {
@@ -51,7 +58,7 @@ export class App extends Component {
             {this.props.children}
           </main>
 
-          {/*<Footer />*/}
+          <Footer />
           { this.props.loading ? <Loader /> : null }
         </div>
       </MuiThemeProvider>
@@ -64,17 +71,6 @@ const mapStateToProps = (state) => {
     errors: state.errors,
     loading: state.loading
   }
-}
-
-App.propTypes = {
-  appError: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  errors: PropTypes.array,
-}
-
-App.childContextTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
 }
 
 export default connect(mapStateToProps, { appError, clearErrors })(App)

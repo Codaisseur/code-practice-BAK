@@ -3,8 +3,17 @@ import { routerActions } from 'react-router-redux'
 import { connect } from 'react-redux'
 import Api from '~/middleware/api'
 import { Link } from 'react-router'
-
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton';
 import { login } from '~/actions/user'
+
+import './Login.sass'
+
+const styles = {
+  button: {
+    margin: 12,
+  },
+};
 
 function select(state, ownProps) {
   const isAuthenticated = state.user.authentication_token || false
@@ -16,6 +25,12 @@ function select(state, ownProps) {
 }
 
 export class LoginContainer extends Component {
+  static propTypes = {
+  login: PropTypes.func.isRequired,
+  replace: PropTypes.func.isRequired,
+}
+
+
   componentWillMount() {
     const { isAuthenticated, replace, redirect } = this.props
     if (isAuthenticated) {
@@ -45,14 +60,30 @@ export class LoginContainer extends Component {
     return (
       <form onSubmit={this.onSubmit.bind(this)}>
         <h2>Please sign in</h2>
-        <label htmlFor="email">Email:</label>
-        <input id="email" type="email" ref="email" />
-        <br/>
-        <label htmlFor="password">Password:</label>
-        <input id="password" type="password" ref="password" />
-        <br/>
-        <Link to="/reset-password">I forgot my password</Link>
-        <input type="Submit" defaultValue="Sign in" />
+        <TextField
+          hintText="Enter your email"
+          id="email"
+          type="email"
+          ref="email" />
+        <br />
+
+        <TextField
+          hintText="Enter your password."
+          id="password"
+          type="password"
+          ref="password" />
+        <br />
+
+
+        <RaisedButton
+          label="Forgot my password"
+          href="/reset-password"
+          primary={true} />
+
+        <RaisedButton
+          label="Sign in"
+          style={styles.button}
+          onClick={this.onSubmit.bind(this)} />
       </form>
     )
   }
