@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import routes from '~/middleware/routes'
 import { Link } from 'react-router'
 
-// Material UI Components
-import { List, ListItem } from 'material-ui/List'
-
 // Styles
 import './AssignmentsContainer.sass'
 
