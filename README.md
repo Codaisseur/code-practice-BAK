@@ -29,8 +29,8 @@ rm -rf node_modules
 # Install dependencies with Docker
 docker-compose up install
 
-# Start the dev server and API
-docker-compose up dev
+# Start the dev server and API and the test watcher
+docker-compose up dev test
 
 # Open the app in your browser
 open http://localhost:3000
