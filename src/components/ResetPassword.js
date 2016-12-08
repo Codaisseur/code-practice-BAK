@@ -91,8 +91,8 @@ export class ResetPasswordContainer extends Component {
           hintText="Email:"
           id="email"
           type="email"
-          ref="email"
-          errorText="errorText" />
+          errorText=""
+          ref="email" />
         <br />
         { this.renderFormErrors('errorText') }
 
