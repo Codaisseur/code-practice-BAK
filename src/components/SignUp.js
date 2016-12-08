@@ -61,49 +61,59 @@ export class SignUpContainer extends Component {
 
   onSubmit(e) {
   e.preventDefault()
-  const { password, passwordConfirmation } = this.refs
-  this.props.createAccount({
+  const {email, password, passwordConfirmation, firstname, lastname } = this.refs
+  this.props.SignUp({
+    email: email.getValue(),
     password: password.getValue(),
     password_confirmation: passwordConfirmation.getValue(),
+    firstname: firstname.getValue(),
+    lastname: lastname.getValue(),
   })
 }
 
   render() {
+    const { errors } = this.props
+
     return (
       <form className="signup-form" onSubmit={this.onSubmit.bind(this)}>
         <h1>Codaisseur Reader</h1>
         <p>Your learning journey starts here.</p>
+        { errors && <div className="form-error">
+        </div>}
         <TextField
-          hintText="Enter your email"
+          hintText="Your email"
           id="email"
           type="email"
           ref="email"
           fullWidth={true}
           hintStyle={styles.hintStyle}
           inputStyle={styles.inputStyle}
-          underlineStyle={styles.underlineStyle}/>
+          underlineStyle={styles.underlineStyle}
+          errorText={errors && errors.email}/>
         <br />
 
         <TextField
-          hintText="Enter your password"
+          hintText="Your password"
           id="password"
           type="password"
           ref="password"
           fullWidth={true}
           hintStyle={styles.hintStyle}
           inputStyle={styles.inputStyle}
-          underlineStyle={styles.underlineStyle}/>
+          underlineStyle={styles.underlineStyle}
+          errorText={errors && errors.password}/>
         <br />
 
         <TextField
           hintText="Password confirmation"
-          id="password"
+          id="password_confirmation"
           type="password"
-          ref="password"
+          ref="password_confirmation"
           fullWidth={true}
           hintStyle={styles.hintStyle}
           inputStyle={styles.inputStyle}
-          underlineStyle={styles.underlineStyle}/>
+          underlineStyle={styles.underlineStyle}
+          errorText={errors && errors.password_confirmation}/>
         <br />
 
         <TextField
@@ -128,19 +138,23 @@ export class SignUpContainer extends Component {
           underlineStyle={styles.underlineStyle} />
         <br />
 
+        <div className="actions">
         <RaisedButton
           label="Log in"
           href="/login"
           primary={true} />
 
+
         <RaisedButton
           label="Sign up"
           style={styles.button}
           onClick={this.onSubmit.bind(this)} />
+        </div>
       </form>
     )
   }
 }
+
 SignUpContainer.propTypes = {
   sign_up: PropTypes.func.isRequired,
   replace: PropTypes.func.isRequired

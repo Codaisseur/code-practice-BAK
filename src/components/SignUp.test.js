@@ -25,10 +25,10 @@ describe('<SignUpContainer />', () => {
     expect(sign_up).to.have.tagName('form')
     expect(sign_up).to.have.descendants('#email')
     expect(sign_up).to.have.descendants('#password')
-    expect(sign_up).to.have.descendants('#password_confirmation')
+    expect(sign_up).to.have.descendants('#password')
     expect(sign_up).to.have.descendants('#firstname')
     expect(sign_up).to.have.descendants('#lastname')
-    expect(sign_up).to.have.descendants('h2')
+    expect(sign_up).to.have.descendants('h1')
     expect(sign_up).to.have.descendants('p')
   })
 
@@ -42,7 +42,7 @@ describe('<SignUpContainer />', () => {
     it('should call sign up() upon submitting the form with values', () => {
       sign_up.ref('email').value = 'David'
       sign_up.ref('password').value = 'verysecret'
-      sign_up.ref('password_confirmation').value = 'verysecret'
+      sign_up.ref('password').value = 'verysecret'
       sign_up.ref('firstname').value = 'John'
       sign_up.ref('lastname').value = 'Smidt'
       sign_up.simulate('submit')
@@ -54,9 +54,9 @@ describe('<SignUpContainer />', () => {
       SignUpSpy.reset()
       sign_up.ref('email').value = null
       sign_up.ref('password').value = null
-      sign_up.ref('password_confirmation').value = 'verysecret'
-      sign_up.ref('firstname').value = 'John'
-      sign_up.ref('lastname').value = 'Smidt'
+      sign_up.ref('password').value = null
+      sign_up.ref('firstname').value = null
+      sign_up.ref('lastname').value = null
       sign_up.simulate('submit')
       expect(SignUpSpy).not.to.have.been.called()
     })
