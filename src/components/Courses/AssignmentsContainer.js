@@ -1,19 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import routes from '~/middleware/routes'
 import { Link } from 'react-router'
 
 // Material UI Components
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
-import RaisedButton from 'material-ui/RaisedButton'
 import { List, ListItem } from 'material-ui/List'
 
 // Styles
 import './AssignmentsContainer.sass'
 
 // Components
-import AssignmentList from './AssignmentList'
+import Assignment from './Assignment'
 
 class AssignmentsContainer extends Component {
+
+  renderAssignments() {
+    return this.props.assignments.map((assignment) => {
+      return (
+        <Assignment key={assignment.assignmentId} { ...assignment }/>
+      )
+    })
+  }
 
   render() {
     return (
@@ -36,7 +43,7 @@ class AssignmentsContainer extends Component {
         <section className="page-container">
 
           <main className="contained page-content">
-            <AssignmentList />
+            {this.renderAssignments()}
           </main>
         </section>
 
@@ -45,4 +52,10 @@ class AssignmentsContainer extends Component {
   }
 }
 
-export default AssignmentsContainer
+function mapStateToProps(state) {
+  return {
+    assignments: state.assignments
+  }
+}
+
+export default connect(mapStateToProps)(AssignmentsContainer)
