@@ -30,9 +30,13 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
-        loaders: ['babel'],
-        include: path.join(__dirname, 'src')
+        test: /\.jsx?/,
+        loader: 'babel',
+        include: path.join(__dirname, 'src'),
+        exclude: [/(node_modules|bower_components)/, /\.test\.jsx?$/],
+        query: {
+          presets: ['airbnb', 'react', 'es2015', 'stage-0']
+        }
       },
       { test: /\.woff2?$/,      loader: "url-loader?limit=10000&minetype=application/font-woff" },
       { test: /\.ttf$/,         loader: "file-loader" },
