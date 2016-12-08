@@ -41,17 +41,12 @@ build:
     - script:
         name: build the project
         code: |
-          npm run build
+          if [ "$WERCKER_GIT_BRANCH" = "master" ]; then npm run build && npm run build:copy fi
 
 deploy:
   # Steps executed when the build phase passes on master branches
   steps:
-    - npm-install
-
     - script:
         name: npm run deploy
         code: |
-          npm run build:copy
-          npm run build:sync
-
-    - internal/store-container
+          aws s3 sync dist/ s3://practice.codaisseur.com
