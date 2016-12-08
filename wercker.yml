@@ -3,7 +3,10 @@
 # If you want Nodesource's container you would reference nodesource/node
 # Read more about containers on our dev center
 # http://devcenter.wercker.com/docs/containers/index.html
-box: node
+box:
+  id: quay.io/codaisseur/codaisseur-ci
+  tag: latest
+  registry: quay.io
 # This is the build pipeline. Pipelines are the core of wercker
 # Read more about pipelines on our dev center
 # http://devcenter.wercker.com/docs/pipelines/index.html
@@ -41,11 +44,10 @@ deploy:
     - npm-install
 
     - script:
-        name: install awscli
-        code: |
-          pip install --upgrade awscli
-
-    - script:
         name: npm run deploy
         code: |
+          echo "WORKING DIR: $(pwd)"
+          ls -lah
+          echo "WERCKER STEP ROOT: ${WERCKER_STEP_ROOT}"
+          ls -lah $WERCKER_STEP_ROOT
           npm run deploy

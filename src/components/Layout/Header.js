@@ -124,7 +124,6 @@ export class Header extends Component {
       <header className="header">
         <AppBar
           className="appbar"
-          title="Home"
           onLeftIconButtonTouchTap={this.handleToggle}
           iconElementRight={
             <IconMenu

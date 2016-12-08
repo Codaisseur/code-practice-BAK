@@ -12,7 +12,7 @@ import muiTheme from './assets/styles/theme'
 
 // Components
 import Header from './components/Layout/Header'
-// import Footer from './components/Layout/Footer'
+import Footer from './components/Layout/Footer'
 import Loader from './components/Layout/Loader'
 import RaisedButton from 'material-ui/RaisedButton'
 
@@ -58,7 +58,7 @@ export class App extends Component {
             {this.props.children}
           </main>
 
-          {/*<Footer />*/}
+          <Footer />
           { this.props.loading ? <Loader /> : null }
         </div>
       </MuiThemeProvider>

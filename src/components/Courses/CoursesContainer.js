@@ -20,6 +20,7 @@ class CoursesContainer extends Component {
       <div className="container courses">
         <section className="contained heading">
           <h1>Courses</h1>
+          <p>These are all the available courses. Start practicing!</p>
         </section>
         <section className="contained-grid">
           { this.renderCourses() }
