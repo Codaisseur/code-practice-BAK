@@ -20,16 +20,20 @@ This project will provide a place to practice.
 
 To run this project do the following.
 
-```bash
-npm install
-npm start
-open http://localhost:3000
-```
-
 To run the API:
 
 ```bash
-docker-compose up api
+# Remove your local node_modules if they exist
+rm -rf node_modules
+
+# Install dependencies with Docker
+docker-compose up install
+
+# Start the dev server and API
+docker-compose up dev
+
+# Open the app in your browser
+open http://localhost:3000
 ```
 
 This will start the Feathers API and a Mongodb container.

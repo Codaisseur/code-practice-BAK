@@ -18,11 +18,12 @@ app.get('*', function(req, res) {
 });
 
 app.listen(3000, '0.0.0.0', function(err) {
+  console.log('Install new dependencies with "docker-compose up install"');
+
   if (err) {
     console.log(err);
     return;
   }
 
-  console.log('Listening at http://0.0.0.0:3000');
-  console.log('Install new dependencies with "docker-compose up install"');
+  console.log('Listening at http://localhost:3000');
 });
