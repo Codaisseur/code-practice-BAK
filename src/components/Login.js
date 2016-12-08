@@ -13,7 +13,19 @@ const styles = {
   button: {
     margin: 12,
   },
-};
+  hintStyle: {
+    color: '#757575',
+    fontSize: 13,
+    fontFamily: 'Poppins',
+  },
+  inputStyle: {
+    fontSize: 13,
+    fontFamily: 'Poppins',
+  },
+  underlineStyle: {
+    borderColor: 'rgba(117, 117, 117, 0.5)',
+  }
+}
 
 function select(state, ownProps) {
   const isAuthenticated = state.user.authentication_token || false
@@ -58,20 +70,28 @@ export class LoginContainer extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit.bind(this)}>
+      <form className="sign-in-form" onSubmit={this.onSubmit.bind(this)}>
         <h2>Please sign in</h2>
         <TextField
           hintText="Enter your email"
           id="email"
           type="email"
-          ref="email" />
+          ref="email"
+          fullWidth={true}
+          hintStyle={styles.hintStyle}
+          inputStyle={styles.inputStyle}
+          underlineStyle={styles.underlineStyle} />
         <br />
 
         <TextField
           hintText="Enter your password."
           id="password"
           type="password"
-          ref="password" />
+          ref="password"
+          fullWidth={true}
+          hintStyle={styles.hintStyle}
+          inputStyle={styles.inputStyle}
+          underlineStyle={styles.underlineStyle} />
         <br />
 
 

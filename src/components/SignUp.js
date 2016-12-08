@@ -7,6 +7,8 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 import { sign_up } from '~/actions/user'
 
+import './Login.sass'
+
 const styles = {
   button: {
     margin: 12,
@@ -68,7 +70,7 @@ export class SignUpContainer extends Component {
 
   render() {
     return (
-      <form className="sign-in-form" onSubmit={this.onSubmit.bind(this)}>
+      <form className="signup-form" onSubmit={this.onSubmit.bind(this)}>
         <h2>Please sign up</h2>
         <TextField
           hintText="Enter your email"

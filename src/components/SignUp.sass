@@ -2,17 +2,21 @@
 @import "../assets/styles/base/breakpoints"
 @import "../assets/styles/base/mixins"
 
-.sign-in-form
+.signup-form
   padding: 8em 2em 2em
 
   p
     margin-bottom: 4em
     font-size: 18px
 
+  .form-error p
+    margin-bottom: 1em
+    color: $red
+
   .actions
     margin-top: 20px
 
-    @include breakpoint($breakpoint-medium)
+  @include breakpoint($breakpoint-medium)
     min-width: 600px
     text-align: center
     position: fixed
