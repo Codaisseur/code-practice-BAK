@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import routes from '~/middleware/routes'
 
 import { connect } from 'react-redux'
 
