@@ -74,7 +74,7 @@ ReactDOM.render(
         <Route path={routes.resetPasswordPath} component={ResetPassword} />
         <Route path={routes.coursesPath} component={CoursesContainer} />
         <Route path={`${routes.coursesPath}/new`} component={CreateCourse} />
-        <Route path={`${routes.coursesPath}/:_id`} component={AssignmentsContainer} />
+        <Route path={`${routes.coursesPath}/:courseId`} component={AssignmentsContainer} />
       </Route>
       <Route path="*" component={NotFound}/>
     </Router>

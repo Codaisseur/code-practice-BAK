@@ -23,7 +23,7 @@ export class CreateCourse extends Component {
         <form onSubmit={ this.save.bind(this) }>
           <h1>Create New Course</h1>
           <div>
-            <input id="courseName" type="text" title="title" ref="title" placeholder="Course Name"/>
+            <input id="courseName" type="text" name="title" ref="title" placeholder="Course Name"/>
             <input id="createCourse" type="submit" value="Create Course" />
           </div>
         </form>
