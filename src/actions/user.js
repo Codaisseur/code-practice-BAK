@@ -8,6 +8,37 @@ export const USER_LOGIN_FAILED = 'BACKEND_ERROR'
 export const USER_RESET_PASSWD = 'USER_RESET_PASSWD'
 export const USER_RESET_PASSWD_FAILED = 'BACKEND_ERROR'
 
+export const signUp = (email, password, password_confirmation, firstname, lastname) => {
+  return (dispatch) => {
+    dispatch(appLoading)
+
+    api.signUp(email, password, password_confirmation, firstname, lastname)
+      .then((data) => {
+        dispatch(appDoneLoading())
+
+        if (data.error) {
+          dispatch(signUpFailed(data))
+        } else {
+          dispatch(signUpSuccesfull(data))
+        }
+      })
+      }
+  }
+
+const signUpSuccesfull = (data) => {
+  return {
+    type: USER_LOGGED_IN,
+    payload: data
+  }
+}
+
+const signUpFailed = (data) => {
+  return {
+    type: USER_LOGIN_FAILED,
+    payload: data
+  }
+}
+
 export const login = (email, password) => {
   return (dispatch) => {
     dispatch(appLoading())
