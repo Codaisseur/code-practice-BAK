@@ -17,24 +17,15 @@ import { resetPassword } from '~/actions/user'
 const styles = {
   button: {
     margin: 12,
-  };
-
- // end button styling
-
-function select(state, ownProps) {
-  const passwordIsReset = state.user.passwordIsReset || false
-  const formErrors = state.errors || {}
-  return {
-    passwordIsReset,
-    formErrors
-  }
-}
+  },
+};
 
 export class ResetPasswordContainer extends Component {
   static propTypes = {
-  resetPassword: PropTypes.func.isRequired,
-  replace: PropTypes.func.isRequired,
-}
+    resetPassword: PropTypes.func.isRequired,
+    replace: PropTypes.func.isRequired,
+    formErrors: PropTypes.object.isRequired,
+  }
 
   componentWillMount() {
     const { passwordIsReset, replace } = this.props
@@ -68,8 +59,8 @@ export class ResetPasswordContainer extends Component {
   }
 
   render() {
-
     const { formErrors } = this.props
+    const { email } = this.refs
 
     return (
       <form onSubmit={this.onSubmit.bind(this)}>
@@ -80,10 +71,11 @@ export class ResetPasswordContainer extends Component {
         </p>
 
         <TextField
+          label='email'
           hintText="Email:"
           id="email"
           type="email"
-          errorText={formErrors.email}
+          errorText={ formErrors.email }
           ref="email"
         />
         <br />
@@ -105,9 +97,13 @@ export class ResetPasswordContainer extends Component {
   }
 }
 
-ResetPasswordContainer.propTypes = {
-  resetPassword: PropTypes.func.isRequired,
-  replace: PropTypes.func.isRequired
+function mapStateToProps(state, ownProps) {
+  const passwordIsReset = state.user.passwordIsReset || false
+  const formErrors = state.errors || {}
+  return {
+    passwordIsReset,
+    formErrors
+  }
 }
 
-export default connect(select, { resetPassword, clearErrors, replace: routerActions.replace })(ResetPasswordContainer)
+export default connect(mapStateToProps, { resetPassword, clearErrors, replace: routerActions.replace })(ResetPasswordContainer)

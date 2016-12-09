@@ -13,7 +13,8 @@ const resetProps = {
   resetPassword: chai.spy(),
   clearErrors: chai.spy(),
   replace: chai.spy(),
- }
+  formErrors:{},
+}
 
 const element = wrapper(<ResetPasswordContainer { ...resetProps } />)
 
@@ -39,10 +40,20 @@ describe('<ResetPasswordContainer />', () => {
    const resetSpy = chai.spy()
 
     it('should call resetPassword() upon submitting the form with values', () => {
-     element.ref('email').value = 'kees@kees.nl'
-     element.simulate('submit')
-     expect(resetSpy).to.have.been.called
-       .with.exactly('kees@kees.nl')
+      element.ref('email').value = 'kees@kees.nl'
+      element.simulate('submit')
+      expect(resetSpy).to.have.been.called.with.exactly('kees@kees.nl')
+    })
+
+    describe('formErrors', () => {
+      const resetPropsWithFormError = Object.assign(resetProps, { email: ['This email address is not registered here'] })
+      const element2 = wrapper(<ResetPasswordContainer { ...resetPropsWithFormError } />)
+
+      it('shows the error', () => {
+        element2.ref('email').value = 'kees@kees.nl'
+        element2.simulate('submit')
+        expect(resetSpy).to.have.been.called.with( ['This email address is not registered here'] )
+      })
     })
   })
 })
