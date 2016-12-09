@@ -1,11 +1,11 @@
 import { CREATE_COURSE } from '../actions/courses'
 
 const initialState = [
-  { courseId: 1, name: 'Ruby', description: 'Ruby is awesome' },
-  { courseId: 2, name: 'JavaScript', description: 'Learn how to write awesome JavaScript!' },
-  { courseId: 3, name: 'HTML and CSS', description: 'Let\'s make beautiful websites.' },
-  { courseId: 4, name: 'Python', description: 'Python yeahhh' },
-  { courseId: 5, name: 'Java', description: 'This course will never exist...' }
+  { _id: 1, title: 'Ruby', description: 'Ruby is awesome' },
+  { _id: 2, title: 'JavaScript', description: 'Learn how to write awesome JavaScript!' },
+  { _id: 3, title: 'HTML and CSS', description: 'Let\'s make beautiful websites.' },
+  { _id: 4, title: 'Python', description: 'Python yeahhh' },
+  { _id: 5, title: 'Java', description: 'This course will never exist...' }
 ]
 
 export default (state = initialState, { type, payload } = {}) => {

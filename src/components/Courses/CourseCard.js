@@ -8,15 +8,15 @@ import './CourseCard.sass'
 
 class CourseCard extends PureComponent {
   render() {
-    const { courseId, name, description } = this.props
+    const { _id, title, description } = this.props
     const coursesPath = routes.coursesPath
 
     return(
       <div className="card">
-        <Card key={ name }>
+        <Card key={ _id }>
           <CardHeader
             className="title"
-            title={ name }
+            title={ title }
           />
 
           <CardText>
@@ -27,7 +27,7 @@ class CourseCard extends PureComponent {
             <NavButton
               label="Go to course"
               primary={true}
-              to={ `${coursesPath}/${courseId}` }
+              to={ `${coursesPath}/${_id}` }
             />
           </CardActions>
         </Card>
