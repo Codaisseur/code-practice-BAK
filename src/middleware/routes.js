@@ -3,7 +3,7 @@ const routes = {
   loginPath: '/login',
   resetPasswordPath: '/reset-password',
   coursesPath: '/courses',
-  signUpPath: '/sign_up',
+  signUpPath: '/sign-up',
 }
 
 export default routes

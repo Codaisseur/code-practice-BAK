@@ -9,56 +9,56 @@ chai.use(spies)
 chai.use(chaiEnzyme())
 
 const SignUpProps = {
-  sign_up: chai.spy(),
+  SignUp: chai.spy(),
   replace: chai.spy(),
  }
 
-const sign_up = wrapper(<SignUpContainer { ...SignUpProps } />)
+const signUp = wrapper(<SignUpContainer { ...SignUpProps } />)
 
 
 describe('<SignUpContainer />', () => {
   it('renders a form', () => {
-    expect(sign_up.find('form')).to.have.length(1)
+    expect(signUp.find('form')).to.have.length(1)
   })
 
   it('renders a form that contains certain elements', () => {
-    expect(sign_up).to.have.tagName('form')
-    expect(sign_up).to.have.descendants('#email')
-    expect(sign_up).to.have.descendants('#password')
-    expect(sign_up).to.have.descendants('#password')
-    expect(sign_up).to.have.descendants('#firstname')
-    expect(sign_up).to.have.descendants('#lastname')
-    expect(sign_up).to.have.descendants('h1')
-    expect(sign_up).to.have.descendants('p')
+    expect(signUp).to.have.tagName('form')
+    expect(signUp).to.have.descendants('#email')
+    expect(signUp).to.have.descendants('#password')
+    expect(signUp).to.have.descendants('#password')
+    expect(signUp).to.have.descendants('#firstname')
+    expect(signUp).to.have.descendants('#lastname')
+    expect(signUp).to.have.descendants('h1')
+    expect(signUp).to.have.descendants('p')
   })
 
   it('has five input fields', () => {
-    expect(sign_up.find('input')).to.have.length(5)
+    expect(signUp.find('input')).to.have.length(5)
   })
 
   describe('form submission', () => {
-    const SignUpSpy = chai.spy()
+    const signUpSpy = chai.spy()
 
     it('should call sign up() upon submitting the form with values', () => {
-      sign_up.ref('email').value = 'David'
-      sign_up.ref('password').value = 'verysecret'
-      sign_up.ref('password').value = 'verysecret'
-      sign_up.ref('firstname').value = 'John'
-      sign_up.ref('lastname').value = 'Smidt'
-      sign_up.simulate('submit')
-      expect(SignUpSpy).to.have.been.called
+      signUp.ref('email').value = 'David'
+      signUp.ref('password').value = 'verysecret'
+      signUp.ref('password').value = 'verysecret'
+      signUp.ref('firstname').value = 'John'
+      signUp.ref('lastname').value = 'Smidt'
+      signUp.simulate('submit')
+      expect(signUpSpy).to.have.been.called
         .with.exactly('David', 'verysecret', 'verysecret', 'John', 'Smidt')
     })
 
     it('should not call sign up() upon submitting the form without values', () => {
-      SignUpSpy.reset()
-      sign_up.ref('email').value = null
-      sign_up.ref('password').value = null
-      sign_up.ref('password').value = null
-      sign_up.ref('firstname').value = null
-      sign_up.ref('lastname').value = null
-      sign_up.simulate('submit')
-      expect(SignUpSpy).not.to.have.been.called()
+      signUpSpy.reset()
+      signUp.ref('email').value = null
+      signUp.ref('password').value = null
+      signUp.ref('password').value = null
+      signUp.ref('firstname').value = null
+      signUp.ref('lastname').value = null
+      signUp.simulate('submit')
+      expect(signUpSpy).not.to.have.been.called()
     })
   })
 })
