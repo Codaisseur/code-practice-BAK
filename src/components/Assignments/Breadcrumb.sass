@@ -1,0 +1,24 @@
+@import "../../assets/styles/base/colors"
+
+ul.breadcrumb
+  list-style: none
+  margin: 0
+  padding: 0
+
+  li
+    display: inline-block
+    font-size: 14px
+
+    svg
+      display: inline-block
+      vertical-align: top
+      fill: $darkGrey50 !important
+
+    a
+      vertical-align: middle
+      text-decoration: none
+      font-weight: 500
+      color: $darkGrey
+
+    &:last-child > a
+      color: $darkGrey50 !important

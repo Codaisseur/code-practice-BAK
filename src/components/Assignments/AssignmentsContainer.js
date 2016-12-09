@@ -8,6 +8,7 @@ import './AssignmentsContainer.sass'
 
 // Components
 import Assignment from './Assignment'
+import Breadcrumb from './Breadcrumb'
 
 // Material UI
 import LinearProgress from 'material-ui/LinearProgress'
@@ -25,17 +26,22 @@ class AssignmentsContainer extends Component {
     })
   }
 
+  renderBreadCrumb() {
+    const crumbs = this.props.breadcrumb
+    return <Breadcrumb { ...crumbs } />
+  }
+
   render() {
     const { progress } = this.props
 
     return (
       <div className="container assignment">
-
         <section className="contained heading">
           <div className="left-items-wrapper">
             <h1>Course Title</h1>
-            <h3>bread crumbs > crumb > crumb</h3>
+            { this.renderBreadCrumb() }
           </div>
+
           <div className="score-wrapper">
             <LinearProgress
             className="progress-bar"
@@ -47,7 +53,6 @@ class AssignmentsContainer extends Component {
         </section>
 
         <section className="page-container">
-
           <main className="contained page-content">
             {this.renderAssignments()}
           </main>
