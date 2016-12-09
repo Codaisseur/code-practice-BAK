@@ -13,7 +13,8 @@ const resetProps = {
   resetPassword: chai.spy(),
   clearErrors: chai.spy(),
   replace: chai.spy(),
- }
+  formErrors:{},
+}
 
 const element = wrapper(<ResetPasswordContainer { ...resetProps } />)
 
@@ -31,25 +32,25 @@ describe('<ResetPasswordContainer />', () => {
      expect(emailLabel.text()).to.equal('Email:')
    })
 
- it('has two input fields', () => {
-   expect(element.find('input')).to.have.length(2)
+ it('has one input field', () => {
+   expect(element.find('input')).to.have.length(1)
  })
 
- it('renders children when passed in', () => {
-  const wrapper = mount(<ResetPasswordContainer {...resetProps} />)
-  expect(wrapper.ref('email')).to.have.tagName('input')
-  expect(wrapper.ref('email').prop('id')).to.equal('email')
-  expect(wrapper.ref('email').prop('type')).to.equal('email')
-})
-
   describe('form submission', () => {
-   const resetSpy = chai.spy()
 
     it('should call resetPassword() upon submitting the form with values', () => {
-     element.ref('email').value = 'kees@kees.nl'
-     element.simulate('submit')
-     expect(resetSpy).to.have.been.called
-       .with.exactly('kees@kees.nl')
+      element.ref('email').value = 'kees@kees.nl'
+      element.simulate('submit')
+      expect(resetProps.resetPassword).to.have.been.called.with.exactly('kees@kees.nl')
+    })
+
+    describe('formErrors', () => {
+      const resetPropsWithFormError = Object.assign(resetProps, { formErrors: {email: ['This email address is not registered here'] }} )
+      const element = wrapper(<ResetPasswordContainer { ...resetPropsWithFormError } />)
+
+      it('shows the error', () => {
+        expect(element.text()).to.contain('This email address is not registered here')
+      })
     })
   })
 })

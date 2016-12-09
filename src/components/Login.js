@@ -38,9 +38,9 @@ function select(state, ownProps) {
 
 export class LoginContainer extends Component {
   static propTypes = {
-  login: PropTypes.func.isRequired,
-  replace: PropTypes.func.isRequired,
-}
+    login: PropTypes.func.isRequired,
+    replace: PropTypes.func.isRequired,
+  }
 
 
   componentWillMount() {
@@ -107,11 +107,6 @@ export class LoginContainer extends Component {
       </form>
     )
   }
-}
-
-LoginContainer.propTypes = {
-  login: PropTypes.func.isRequired,
-  replace: PropTypes.func.isRequired
 }
 
 export default connect(select, { login, replace: routerActions.replace })(LoginContainer)
