@@ -2,9 +2,9 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
+  // devtool: 'source-map',
   entry: [
-    './src/index'
+    path.join(__dirname, 'src', 'index')
   ],
   output: {
     path: path.join(__dirname, 'dist', 'static'),
@@ -30,9 +30,13 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
-        loaders: ['babel'],
-        include: path.join(__dirname, 'src')
+        test: /\.jsx?/,
+        loader: 'babel',
+        include: path.join(__dirname, 'src'),
+        exclude: [/(node_modules|bower_components)/, /\.test\.jsx?$/],
+        query: {
+          presets: ['airbnb', 'react', 'es2015', 'stage-0']
+        }
       },
       { test: /\.woff2?$/,      loader: "url-loader?limit=10000&minetype=application/font-woff" },
       { test: /\.ttf$/,         loader: "file-loader" },
@@ -43,5 +47,12 @@ module.exports = {
       { test: /\.json$/,        loader: "json-loader"}
 
     ]
+  },
+  run: function(err, stats) {
+    if (err) { throw new gutil.PluginError('webpack:build', err); }
+    gutil.log('[webpack:build]', stats.toString({
+        chunks: false, // Makes the build much quieter
+        colors: true
+    }));
   }
 };

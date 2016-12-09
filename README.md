@@ -20,11 +20,23 @@ This project will provide a place to practice.
 
 To run this project do the following.
 
+To run the API:
+
 ```bash
-npm install
-npm start
+# Remove your local node_modules if they exist
+rm -rf node_modules
+
+# Install dependencies with Docker
+docker-compose up install
+
+# Start the dev server and API and the test watcher
+docker-compose up dev test
+
+# Open the app in your browser
 open http://localhost:3000
 ```
+
+This will start the Feathers API and a Mongodb container.
 
 ## Testing
 
@@ -32,17 +44,11 @@ We use [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/), and [Enzyme](h
 
 ### Running the tests
 
-To run the tests once, run the default commmand:
+During development, you'll want to be watching for changes and
+rerunning the tests on file changes:
 
 ```
-npm test
-```
-
-During development, you might be more interested in watching for changes and
-rerun the tests on file changes:
-
-```
-npm run test:watch
+docker-compose up test
 ```
 
 ### Writing tests
@@ -170,9 +176,17 @@ export default connect(mapStateToProps, ...)
 import { Header } from './Header'
 ```
 
+### Screenshots [WIP]
+Screenshots of the onboarding flow. 
+
+![ScreenShot](https://cloud.githubusercontent.com/assets/20054414/21008268/42327f84-bd41-11e6-8175-059710119151.png)
+![ScreenShot](https://cloud.githubusercontent.com/assets/20054414/21008302/74c14e12-bd41-11e6-918f-e54b9b64f4fa.png)
+![ScreenShot](https://cloud.githubusercontent.com/assets/20054414/21008314/816212fa-bd41-11e6-9877-7ec3ff18e6b0.png)
+![ScreenShot](https://cloud.githubusercontent.com/assets/20054414/21008320/8b3e24bc-bd41-11e6-9e71-2daf80060d83.png)
+
 ------------------
 
-**Student Contributors**: @noraeb • @stefanouweneel • @michfarr
+**Student Contributors**: @noraeb • @stefanouweneel • @michfarr • @Jeffrey-Meesters • @tanjahennis • @adrianabm • @Namoneo 
 **Codaisseur**: @foxycoder
 
 [codaisseur]: https://www.codaisseur.com

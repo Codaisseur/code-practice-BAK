@@ -51,6 +51,7 @@ import ResetPassword from './components/ResetPassword'
 import CoursesContainer from './components/Courses/CoursesContainer'
 import CreateCourse from './components/Courses/CreateCourse'
 import AssignmentsContainer from './components/Courses/AssignmentsContainer'
+import Assignment from './components/Courses/Assignment'
 
 import NotFound from './NotFound'
 

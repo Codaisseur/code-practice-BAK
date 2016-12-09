@@ -1,74 +1,40 @@
-import * as auth from '~/actions/user'
+import io from 'socket.io-client';
+import feathers from 'feathers-client';
 
-const API_URL = 'http://api.codaisseur.dev'
-
-class Api {
-  // Create a set of extensible default headers
-  defaultHeaders(otherHeaders = {}) {
-    // Get the Auth params from the user object in localStorage
-    let { email, authentication_token } =
-      JSON.parse(localStorage.getItem('user')) || {}
-
-    // Create the Auth headers
-    // See: https://github.com/gonzalo-bulnes/simple_token_authentication
-    let authHeaders = {}
-    if (authentication_token && email) {
-      authHeaders = {
-        'X-User-Token': authentication_token,
-        'X-User-Email': email
-      }
-    }
-
-    let acceptHeaders = Object.assign({}, authHeaders, {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    })
-
-    return Object.assign({}, acceptHeaders, otherHeaders)
+class API {
+  constructor() {
+    // Establish a Socket.io connection
+    const socket = io(process.env.FEATHERS_API_URL || 'http://localhost:5000');
+    // Initialize our Feathers client application through Socket.io
+    // with hooks and authentication.
+    this.app = feathers()
+      .configure(feathers.socketio(socket))
+      .configure(feathers.hooks())
+      // Use localStorage to store our login token
+      .configure(feathers.authentication({
+        type: 'local',
+        storage: window.localStorage,
+      }));
   }
 
-
-  login(email, password) {
-    let self = this
-    let url = this.url('/users/sign_in')
-    let loginData = {
-      user: { email, password }
-    }
-
-    return fetch(url, {
-      method: 'POST',
-      headers: this.defaultHeaders(),
-      body: JSON.stringify(loginData)
-    }).then((response) => response.json())
+  service(serviceName) {
+    return this.app.service(serviceName)
   }
 
-  resetPassword(email) {
-    let url = this.url('/users/password')
-    let resetData = {
-      user: { email }
-    }
-
-    return fetch(url, {
-      method: 'POST',
-      headers: this.defaultHeaders(),
-      body: JSON.stringify(resetData)
-    }).then((response) => response.json())
+  authenticate(user) {
+    const { email, password } = user
+    return this.app.authenticate(
+      Object.assign({}, { type: 'local' }, {
+      email,
+      password,
+    }))
   }
 
-  get(path) {
-    let url = this.url(path)
-
-    return fetch(url, {
-      method: 'GET',
-      headers: this.defaultHeaders(),
-    }).then((response) => response.json())
-  }
-
-  url(path = '/') {
-    return `${API_URL}${path}.json`
+  signOut() {
+    return this.app.logout()
   }
 }
 
-const api = new Api()
+const Api = new API()
 
-export default api
+export default Api

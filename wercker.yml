@@ -3,7 +3,10 @@
 # If you want Nodesource's container you would reference nodesource/node
 # Read more about containers on our dev center
 # http://devcenter.wercker.com/docs/containers/index.html
-box: node
+box:
+  id: quay.io/codaisseur/codaisseur-ci
+  tag: latest
+  registry: quay.io
 # This is the build pipeline. Pipelines are the core of wercker
 # Read more about pipelines on our dev center
 # http://devcenter.wercker.com/docs/pipelines/index.html
@@ -35,17 +38,15 @@ build:
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
 
+    - script:
+        name: build the project
+        code: |
+          if [ "$WERCKER_GIT_BRANCH" = "master" ]; then npm run build && npm run build:copy; fi
+
 deploy:
   # Steps executed when the build phase passes on master branches
   steps:
-    - npm-install
-
-    - script:
-        name: install awscli
-        code: |
-          pip install --upgrade awscli
-
     - script:
         name: npm run deploy
         code: |
-          npm run deploy
+          aws s3 sync dist/ s3://practice.codaisseur.com
