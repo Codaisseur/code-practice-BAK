@@ -11,7 +11,7 @@ export class CreateCourse extends Component {
     const name = this.refs.name.value
 
     const newCourse = {
-      name: name,
+      name,
     }
 
     createCourse(newCourse)
