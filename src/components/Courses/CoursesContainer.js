@@ -10,7 +10,7 @@ class CoursesContainer extends Component {
   renderCourses() {
     return this.props.courses.map((course) => {
       return (
-        <CourseCard key={ _id } className="card" { ...course }/>
+        <CourseCard key={ course._id } className="card" { ...course }/>
       )
     })
   }
