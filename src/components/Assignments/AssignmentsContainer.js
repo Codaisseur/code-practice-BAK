@@ -36,7 +36,6 @@ class AssignmentsContainer extends Component {
 
     return (
       <div className="container assignment">
-
         <section className="contained heading">
           <div className="left-items-wrapper">
             <h1>Course Title</h1>
@@ -54,7 +53,6 @@ class AssignmentsContainer extends Component {
         </section>
 
         <section className="page-container">
-
           <main className="contained page-content">
             {this.renderAssignments()}
           </main>

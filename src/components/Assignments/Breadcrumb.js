@@ -9,6 +9,7 @@ class Breadcrumb extends PureComponent {
         <li>
           <Link to={ '/courses' }>Courses</Link>
         </li>
+        {/* TODO: Make Breadcrumb render the course/assignment - once it's all connected to the API */}
       </ul>
     )
   }
