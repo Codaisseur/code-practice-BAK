@@ -71,7 +71,7 @@ export class SignUpContainer extends Component {
 
         return (
             <form className="signup-form" onSubmit={this.onSubmit.bind(this)}>
-                <h1>Codaisseur Reader</h1>
+                <h1>Codaisseur Practice</h1>
                 <p>Your learning journey starts here.</p>
                 {errors && <div className="form-error"></div>}
 

@@ -1,8 +1,6 @@
 import { appLoading, appDoneLoading } from './api'
 import api from '../middleware/api'
 
-export const USER_SIGN_UP = 'USER_SIGN_UP'
-export const USER_SIGN_UP_FAILED = 'BACKEND_ERROR'
 export const USER_LOADING = 'USER_LOADING'
 export const USER_LOGGED_IN = 'USER_LOGGED_IN'
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT'

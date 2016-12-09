@@ -40,14 +40,14 @@ describe('<SignUpContainer />', () => {
     const signUpSpy = chai.spy()
 
     it('should call sign up() upon submitting the form with values', () => {
-      signUp.ref('email').value = 'David'
+      signUp.ref('email').value = 'david@mail.com'
       signUp.ref('password').value = 'verysecret'
       signUp.ref('password').value = 'verysecret'
       signUp.ref('firstname').value = 'John'
       signUp.ref('lastname').value = 'Smidt'
       signUp.simulate('submit')
       expect(signUpSpy).to.have.been.called
-        .with.exactly('David', 'verysecret', 'verysecret', 'John', 'Smidt')
+        .with.exactly('david@mail.com', 'verysecret', 'verysecret', 'John', 'Smidt')
     })
 
     it('should not call sign up() upon submitting the form without values', () => {
