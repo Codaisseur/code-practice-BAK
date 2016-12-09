@@ -1,0 +1,41 @@
+version: '2'
+services:
+  dev:
+    image: quay.io/codaisseur/codaisseur-ci
+    environment:
+      - FEATHERS_API_URL=http://api:5000
+    volumes:
+      - ./:/app
+    command: npm start --no-deprecation
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+
+  test:
+    image: quay.io/codaisseur/codaisseur-ci
+    volumes:
+      - ./:/app
+    command: npm run test:watch
+
+  install:
+    image: quay.io/codaisseur/codaisseur-ci
+    volumes:
+      - ./:/app
+    command: npm install
+
+  api:
+    image: quay.io/codaisseur/code-assignments
+    entrypoint: ''
+    environment:
+      - DATABASE_URL=mongodb://mongodb:27017/
+    command: npm start --no-deprecation
+    depends_on:
+      - mongodb
+    ports:
+      - "5000:5000"
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"

@@ -8,14 +8,13 @@ export class CreateCourse extends Component {
     event.preventDefault()
 
     const { createCourse } = this.props
-    const name = this.refs.name.value
+    const title = this.refs.title.value
 
     const newCourse = {
-      name,
+      title,
     }
 
     createCourse(newCourse)
-    console.log(newCourse)
   }
 
   render() {
@@ -24,7 +23,7 @@ export class CreateCourse extends Component {
         <form onSubmit={ this.save.bind(this) }>
           <h1>Create New Course</h1>
           <div>
-            <input id="courseName" type="text" name="name" ref="name" placeholder="Course Name"/>
+            <input id="courseName" type="text" name="title" ref="title" placeholder="Course Name"/>
             <input id="createCourse" type="submit" value="Create Course" />
           </div>
         </form>

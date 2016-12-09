@@ -45,11 +45,13 @@ import routes from '~/middleware/routes'
 import App from './App'
 import Home from './components/Home'
 import Login from './components/Login'
+import SignUp from './components/SignUp'
 import ResetPassword from './components/ResetPassword'
 
 import CoursesContainer from './components/Courses/CoursesContainer'
 import CreateCourse from './components/Courses/CreateCourse'
 import AssignmentsContainer from './components/Courses/AssignmentsContainer'
+import Assignment from './components/Courses/Assignment'
 
 import NotFound from './NotFound'
 
@@ -69,6 +71,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={Home} />
+        <Route path={routes.signUpPath} component={SignUp} />
         <Route path={routes.loginPath} component={Login} />
         <Route path={routes.resetPasswordPath} component={ResetPassword} />
         <Route path={routes.coursesPath} component={CoursesContainer} />
