@@ -1,14 +1,14 @@
-// import io from 'socket.io-client';
+import io from 'socket.io-client';
 import feathers from 'feathers-client';
 
 class API {
   constructor() {
     // Establish a Socket.io connection
-    // const socket = io(process.env.FEATHERS_API_URL);
+    const socket = io(process.env.FEATHERS_API_URL);
     // Initialize our Feathers client application through Socket.io
     // with hooks and authentication.
     this.app = feathers()
-      // .configure(feathers.socketio(socket))
+      .configure(feathers.socketio(socket))
       .configure(feathers.hooks())
       // Use localStorage to store our login token
       .configure(feathers.authentication({
