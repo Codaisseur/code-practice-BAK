@@ -45,11 +45,11 @@ describe('<ResetPasswordContainer />', () => {
     })
 
     describe('formErrors', () => {
-      const resetPropsWithFormError = Object.assign(resetProps, { formErrors: { email: ['This email address is not registered here'] }} )
-      const element2 = wrapper(<ResetPasswordContainer { ...resetPropsWithFormError } />)
+      const resetPropsWithFormError = Object.assign(resetProps, { formErrors: {email: ['This email address is not registered here'] }} )
+      const element = wrapper(<ResetPasswordContainer { ...resetPropsWithFormError } />)
 
       it('shows the error', () => {
-
+        expect(element.text()).to.contain('This email address is not registered here')
       })
     })
   })
