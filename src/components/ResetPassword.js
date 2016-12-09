@@ -4,21 +4,30 @@ import { connect } from 'react-redux'
 import Api from '~/middleware/api'
 import routes from '~/middleware/routes'
 import { Link } from 'react-router'
-
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import './ResetPassword.sass'
-
-
-import { clearErrors } from '~/actions/errors'
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton'
 import { resetPassword } from '~/actions/user'
+import { clearErrors } from '~/actions/errors'
 
-// Styling for the buttons
+import './Login.sass'
+
 const styles = {
   button: {
     margin: 12,
   },
-};
+  hintStyle: {
+    color: '#757575',
+    fontSize: 13,
+    fontFamily: 'Poppins',
+  },
+  inputStyle: {
+    fontSize: 13,
+    fontFamily: 'Poppins',
+  },
+  underlineStyle: {
+    borderColor: 'rgba(117, 117, 117, 0.5)',
+  }
+}
 
 export class ResetPasswordContainer extends Component {
   static propTypes = {
@@ -45,25 +54,14 @@ export class ResetPasswordContainer extends Component {
   onSubmit(e) {
     e.preventDefault()
     this.props.clearErrors()
-    this.props.resetPassword(this.refs.email.value)
-  }
-
-  renderFormErrors(field) {
-    const { formErrors } = this.props
-    if (formErrors === undefined) return
-    if (formErrors[field] === undefined) return
-
-    return formErrors[field].map((error, i) => {
-      return (<span key={`error-${field}-${i}`}>{field} {error}</span>)
-    })
+    this.props.resetPassword(this.refs.email.getValue())
   }
 
   render() {
     const { formErrors } = this.props
-    const { email } = this.refs
 
     return (
-      <form onSubmit={this.onSubmit.bind(this)}>
+      <form className="reset-password-form" onSubmit={this.onSubmit.bind(this)}>
         <h2>Forgot your password?</h2>
         <p>
           Please submit your email address and we will try to find your account
@@ -71,33 +69,31 @@ export class ResetPasswordContainer extends Component {
         </p>
 
         <TextField
-          label='email'
-          hintText="Email:"
+          hintText="Enter your email"
           id="email"
           type="email"
-          errorText={ formErrors.email }
           ref="email"
-        />
+          value={this.props.email}
+          fullWidth={true}
+          hintStyle={styles.hintStyle}
+          inputStyle={styles.inputStyle}
+          errorText={formErrors.email}
+          underlineStyle={styles.underlineStyle} />
         <br />
 
-        <RaisedButton
-          label="Log in"
-          primary={true}
-          href={routes.loginPath}
-        />
+        <Link to="/login">Sign in</Link>
 
         <RaisedButton
-          label="RESET"
-          labelPosition="before"
+          label="Reset password"
           style={styles.button}
           onClick={this.onSubmit.bind(this)}
-        />
+          primary={true} />
       </form>
     )
   }
 }
 
-function mapStateToProps(state, ownProps) {
+const mapStateToProps = (state, ownProps) => {
   const passwordIsReset = state.user.passwordIsReset || false
   const formErrors = state.errors || {}
   return {

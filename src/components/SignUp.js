@@ -4,10 +4,11 @@ import {connect} from 'react-redux'
 import Api from '~/middleware/api'
 import {Link} from 'react-router'
 import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton';
-import {SignUp} from '~/actions/user'
+import RaisedButton from 'material-ui/RaisedButton'
+import { signUp } from '~/actions/user'
+import { appError } from '~/actions/errors'
 
-import './SignUp.sass'
+import './Login.sass'
 
 const styles = {
     button: {
@@ -27,16 +28,11 @@ const styles = {
     }
 }
 
-function select(state, ownProps) {
-    const isAuthenticated = state.user.authentication_token || false
-    const redirect = ownProps.location.query.redirect || '/'
-    return {isAuthenticated, redirect}
-}
-
 export class SignUpContainer extends Component {
     static propTypes = {
-        SignUp: PropTypes.func.isRequired,
-        replace: PropTypes.func.isRequired
+        signUp: PropTypes.func.isRequired,
+        replace: PropTypes.func.isRequired,
+        appError: PropTypes.func.isRequired,
     }
 
     componentWillMount() {
@@ -56,14 +52,32 @@ export class SignUpContainer extends Component {
     }
 
     onSubmit(e) {
-        e.preventDefault()
-        const {email, password, passwordConfirmation, firstname, lastname} = this.refs
-        this.props.SignUp({
-          email: email.getValue(),
-          password: password.getValue(),
-          password_confirmation: passwordConfirmation.getValue(),
-          firstname: firstname.getValue(),
-          lastname: lastname.getValue()})
+      e.preventDefault()
+      const { appError, signUp } = this.props
+      const { email, password, passwordConfirmation,
+        firstname, lastname } = this.refs
+
+      const emailValue = email.getValue(),
+        passwordValue = password.getValue(),
+        passwordConfirmationValue = passwordConfirmation.getValue(),
+        firstnameValue = firstname.getValue(),
+        lastnameValue = lastname.getValue()
+
+      if (passwordValue !== passwordConfirmationValue) {
+        appError({ passwordConfirmation: 'Passwords do not match!' })
+        return
+      }
+
+      signUp({
+        email: emailValue,
+        password: passwordValue,
+        firstname: firstnameValue,
+        lastname: lastnameValue,
+      })
+    }
+
+    navToLogIn() {
+      this.props.replace('/login')
     }
 
     render() {
@@ -80,6 +94,7 @@ export class SignUpContainer extends Component {
                   id="firstname"
                   type="firstname"
                   ref="firstname"
+                  value={this.props.firstname}
                   fullWidth={true}
                   hintStyle={styles.hintStyle}
                   inputStyle={styles.inputStyle}
@@ -91,6 +106,7 @@ export class SignUpContainer extends Component {
                   id="lastname"
                   type="lastname"
                   ref="lastname"
+                  value={this.props.lastname}
                   fullWidth={true}
                   hintStyle={styles.hintStyle}
                   inputStyle={styles.inputStyle}
@@ -102,6 +118,7 @@ export class SignUpContainer extends Component {
                   id="email"
                   type="email"
                   ref="email"
+                  value={this.props.email}
                   fullWidth={true}
                   hintStyle={styles.hintStyle}
                   inputStyle={styles.inputStyle}
@@ -114,6 +131,7 @@ export class SignUpContainer extends Component {
                   id="password"
                   type="password"
                   ref="password"
+                  value={this.props.password}
                   fullWidth={true}
                   hintStyle={styles.hintStyle}
                   inputStyle={styles.inputStyle}
@@ -126,27 +144,32 @@ export class SignUpContainer extends Component {
                   id="password_confirmation"
                   type="password"
                   ref="passwordConfirmation"
+                  value={this.props.passwordConfirmation}
                   fullWidth={true}
                   hintStyle={styles.hintStyle}
                   inputStyle={styles.inputStyle}
                   underlineStyle={styles.underlineStyle}
-                  errorText={errors && errors.password_confirmation}/>
+                  errorText={errors && errors.passwordConfirmation}/>
                 <br/>
 
                 <div className="actions">
-                    <RaisedButton
-                      label="Log in"
-                      href="/login"
-                      primary={true}/>
+                    <Link to="/login">Log in</Link>
 
                     <RaisedButton
                       label="Sign up"
                       style={styles.button}
-                      onClick={this.onSubmit.bind(this)}/>
+                      onClick={this.onSubmit.bind(this)}
+                      primary={true} />
                 </div>
             </form>
         )
     }
 }
 
-export default connect(select, {SignUp, replace: routerActions.replace})(SignUpContainer)
+const mapStateToProps = ({ user, errors }, ownProps) => {
+    const isAuthenticated = user.token || false
+    const redirect = ownProps.location.query.redirect || '/'
+    return { isAuthenticated, redirect, errors }
+}
+
+export default connect(mapStateToProps, {signUp, appError, replace: routerActions.replace})(SignUpContainer)

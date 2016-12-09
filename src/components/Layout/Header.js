@@ -29,10 +29,11 @@ import './Header.sass'
 
 export class Header extends Component {
   static propTypes = {
-  logout: PropTypes.func.isRequired,
-  navigateTo: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-}
+    logout: PropTypes.func.isRequired,
+    navigateTo: PropTypes.func.isRequired,
+    signedIn: PropTypes.bool.isRequired,
+  }
+
   constructor() {
     super()
 
@@ -81,7 +82,7 @@ export class Header extends Component {
   }
 
   adminMenu() {
-    const { navigateTo, adminAvailable } = this.props
+    const { adminAvailable } = this.props
     if (!adminAvailable) { return null }
 
     return (
@@ -118,7 +119,7 @@ export class Header extends Component {
   }
 
   render() {
-    const { navigateTo, adminAvailable, userAvatar } = this.props
+    const { navigateTo, adminAvailable, signedIn, userAvatar } = this.props
 
     return (
       <header className="header">
@@ -126,7 +127,7 @@ export class Header extends Component {
           className="appbar"
           onLeftIconButtonTouchTap={this.handleToggle}
           iconElementRight={
-            <IconMenu
+            signedIn ? <IconMenu
               className="icon-menu"
               iconButtonElement={
                 <IconButton><Avatar className="avatar" src={userAvatar} /></IconButton>
@@ -136,7 +137,7 @@ export class Header extends Component {
             >
               <MenuItem primaryText="Profile" />
               <MenuItem primaryText="Sign out" onClick={ this.handleLogout.bind(this) } />
-            </IconMenu>
+            </IconMenu> : null
           }
         />
 
@@ -207,16 +208,10 @@ export class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    signedIn: !!state.user.token,
     userAvatar: state.user.avatar,
     adminAvailable: state.user.is_admin,
   }
-}
-
-Header.propTypes = {
-  user: PropTypes.object.isRequired,
-  logout: PropTypes.func.isRequired,
-  navigateTo: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, { navigateTo, logout })(Header)

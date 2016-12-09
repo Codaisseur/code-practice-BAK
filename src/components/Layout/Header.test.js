@@ -10,7 +10,7 @@ import { Header } from './Header'
 const headerProps = {
   logout: chai.spy(),
   navigateTo: chai.spy(),
-  user: {},
+  signedIn: true,
  }
 
  const props = (overrideProps) => {
@@ -35,7 +35,7 @@ describe('<Header/>', () => {
   })
 
   context('for Admins', () => {
-    const Admin = wrapper(<Header { ...props({logtout: chai.spy(), navigateTo: chai.spy(), adminAvailable: true}) } />)
+    const Admin = wrapper(<Header { ...props({adminAvailable: true}) } />)
 
     it('renders the Admin menu', () => {
       expect(Admin.find('.AdminMenu').length).to.equal(1)

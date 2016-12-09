@@ -11,7 +11,9 @@ chai.use(chaiEnzyme())
 const loginProps = {
   login: chai.spy(),
   replace: chai.spy(),
- }
+  email: 'student@email.com',
+  password: 'verysecret',
+}
 
 const element = wrapper(<LoginContainer { ...loginProps } />)
 
@@ -32,22 +34,24 @@ describe('<LoginContainer />', () => {
   })
 
   describe('form submission', () => {
-    const loginSpy = chai.spy()
-
     it('should call login() upon submitting the form with values', () => {
-      element.ref('email').value = 'David'
-      element.ref('password').value = 'verysecret'
       element.simulate('submit')
-      expect(loginSpy).to.have.been.called
-        .with.exactly('David', 'verysecret')
+      expect(loginProps.login).to.have.been.called
+        .with('student@email.com', 'verysecret')
     })
 
     it('should not call login() upon submitting the form without values', () => {
-      loginSpy.reset()
-      element.ref('email').value = null
-      element.ref('password').value = null
+      const loginProps = {
+        login: chai.spy(),
+        replace: chai.spy(),
+        email: '',
+        password: '',
+      }
+
+      const element = wrapper(<LoginContainer { ...loginProps } />)
+
       element.simulate('submit')
-      expect(loginSpy).not.to.have.been.called()
+      expect(loginProps.login).not.to.have.been.called()
     })
   })
 })

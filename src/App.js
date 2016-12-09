@@ -19,7 +19,7 @@ export class App extends Component {
     appError: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
-    errors: PropTypes.array,
+    errors: PropTypes.object,
   }
 
   static childContextTypes = {
