@@ -1,13 +1,12 @@
 import { CREATE_COURSE } from '../actions/courses'
 
 const initialState = [
-  { courseId: 1, name: 'Ruby' },
-  { courseId: 2, name: 'JavaScript' },
-  { courseId: 3, name: 'HTML and CSS' },
-  { courseId: 4, name: 'Phyton' },
-  { courseId: 5, name: 'Java' },
+  { _id: 1, title: 'Ruby', description: 'Ruby is awesome' },
+  { _id: 2, title: 'JavaScript', description: 'Learn how to write awesome JavaScript!' },
+  { _id: 3, title: 'HTML and CSS', description: 'Let\'s make beautiful websites.' },
+  { _id: 4, title: 'Python', description: 'Python yeahhh' },
+  { _id: 5, title: 'Java', description: 'This course will never exist...' }
 ]
-
 
 export default (state = initialState, { type, payload } = {}) => {
   switch(type) {

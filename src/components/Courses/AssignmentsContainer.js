@@ -9,6 +9,9 @@ import './AssignmentsContainer.sass'
 // Components
 import Assignment from './Assignment'
 
+// Material UI
+import LinearProgress from 'material-ui/LinearProgress'
+
 class AssignmentsContainer extends Component {
   static propTypes = {
     assignments: PropTypes.array.isRequired,
@@ -23,6 +26,7 @@ class AssignmentsContainer extends Component {
   }
 
   render() {
+    const { progress } = this.props
 
     return (
       <div className="container assignment">
@@ -32,12 +36,13 @@ class AssignmentsContainer extends Component {
             <h1>Course Title</h1>
             <h3>bread crumbs > crumb > crumb</h3>
           </div>
-
-          <div className="right-items-wrapper">
-            <div className="score-wrapper">
-              <h3 className="progress-bar">LinearProgress bar</h3>
-              <p className="percentage">0%</p>
-            </div>
+          <div className="score-wrapper">
+            <LinearProgress
+            className="progress-bar"
+            mode="determinate"
+            value={progress || 0 }
+            />
+            <p className="percentage">{`${progress || 0}`}%</p>
           </div>
         </section>
 
@@ -47,7 +52,6 @@ class AssignmentsContainer extends Component {
             {this.renderAssignments()}
           </main>
         </section>
-
       </div>
     );
   }
