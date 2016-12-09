@@ -37,7 +37,8 @@ class AssignmentsContainer extends Component {
             <h3>bread crumbs > crumb > crumb</h3>
           </div>
           <div className="score-wrapper">
-            <LinearProgress className="progress-bar"
+            <LinearProgress
+            className="progress-bar"
             mode="determinate"
             value={progress || 0 }
             />
