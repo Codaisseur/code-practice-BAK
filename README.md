@@ -20,11 +20,23 @@ This project will provide a place to practice.
 
 To run this project do the following.
 
+To run the API:
+
 ```bash
-npm install
-npm start
+# Remove your local node_modules if they exist
+rm -rf node_modules
+
+# Install dependencies with Docker
+docker-compose up install
+
+# Start the dev server and API and the test watcher
+docker-compose up dev test
+
+# Open the app in your browser
 open http://localhost:3000
 ```
+
+This will start the Feathers API and a Mongodb container.
 
 ## Testing
 
@@ -32,17 +44,11 @@ We use [Mocha](https://mochajs.org/), [Chai](http://chaijs.com/), and [Enzyme](h
 
 ### Running the tests
 
-To run the tests once, run the default commmand:
+During development, you'll want to be watching for changes and
+rerunning the tests on file changes:
 
 ```
-npm test
-```
-
-During development, you might be more interested in watching for changes and
-rerun the tests on file changes:
-
-```
-npm run test:watch
+docker-compose up test
 ```
 
 ### Writing tests
