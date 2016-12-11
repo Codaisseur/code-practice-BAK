@@ -12,7 +12,7 @@ const appProps = {
   appError: chai.spy(),
   clearErrors: chai.spy(),
   loading: false,
-  errors: [],
+  errors: {},
 }
 
 const element = wrapper(<App { ...appProps } />)

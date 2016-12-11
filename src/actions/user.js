@@ -8,18 +8,19 @@ export const USER_LOGIN_FAILED = 'BACKEND_ERROR'
 export const USER_RESET_PASSWD = 'USER_RESET_PASSWD'
 export const USER_RESET_PASSWD_FAILED = 'BACKEND_ERROR'
 
-export const signUp = (email, password, password_confirmation, firstname, lastname) => {
+export const signUp = ({email, password, firstname, lastname}) => {
   return (dispatch) => {
     dispatch(appLoading)
 
-    api.signUp(email, password, password_confirmation, firstname, lastname)
+    api.service('users')
+      .create({email, password, firstname, lastname})
       .then((data) => {
         dispatch(appDoneLoading())
 
         if (data.error) {
           dispatch(signUpFailed(data))
         } else {
-          dispatch(signUpSuccesfull(data))
+          dispatch(login(email, password))
         }
       })
       }
@@ -43,7 +44,7 @@ export const login = (email, password) => {
   return (dispatch) => {
     dispatch(appLoading())
 
-    api.login(email, password)
+    api.authenticate({email, password})
       .then((data) => {
         dispatch(appDoneLoading())
 
@@ -52,6 +53,10 @@ export const login = (email, password) => {
         } else {
           dispatch(loginSuccessful(data))
         }
+      })
+      .catch((error) => {
+        dispatch(appDoneLoading())
+        dispatch(loginFailed(error))
       })
   }
 }

@@ -17,7 +17,7 @@ const userIsAuthenticated = UserAuthWrapper({
   authSelector: (state) => state.user, // how to get the user state
   redirectAction: routerActions.replace, // the redux action to dispatch for redirect
   wrapperDisplayName: 'UserIsAuthenticated', // a nice name for this auth check
-  predicate: (user) => user.authentication_token
+  predicate: (user) => user.token
 })
 
 const userIsTeacher = UserAuthWrapper({
@@ -70,13 +70,13 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={Home} />
+        <IndexRoute component={userIsAuthenticated(Home)} />
         <Route path={routes.signUpPath} component={SignUp} />
         <Route path={routes.loginPath} component={Login} />
         <Route path={routes.resetPasswordPath} component={ResetPassword} />
-        <Route path={routes.coursesPath} component={CoursesContainer} />
-        <Route path={`${routes.coursesPath}/new`} component={CreateCourse} />
-        <Route path={`${routes.coursesPath}/:courseId`} component={AssignmentsContainer} />
+        <Route path={routes.coursesPath} component={userIsAuthenticated(CoursesContainer)} />
+        <Route path={`${routes.coursesPath}/new`} component={userIsAuthenticated(userIsAdmin(CreateCourse))} />
+        <Route path={`${routes.coursesPath}/:courseId`} component={userIsAuthenticated(AssignmentsContainer)} />
       </Route>
       <Route path="*" component={NotFound}/>
     </Router>

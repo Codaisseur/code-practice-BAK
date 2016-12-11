@@ -13,11 +13,11 @@ describe('updateErrors', () => {
   describe(BACKEND_ERROR, () => {
     const type = BACKEND_ERROR
     const payload = {
-      errors: [
-        'Whoops',
-        'multiple',
-        'errors!'
-      ]
+      errors: {
+        o: 'Whoops',
+        m: 'multiple',
+        g: 'errors!'
+      }
     }
 
     const errorState = updateErrors(null, { type, payload})
@@ -27,20 +27,20 @@ describe('updateErrors', () => {
     })
 
     context('With errrors already present in the state', () => {
-      const initialState = [
-        'Whoops',
-        'multiple'
-      ]
+      const initialState = {
+        o: 'Whoops',
+        m: 'multiple'
+      }
 
-      const expectedState = [
-        'Whoops',
-        'multiple',
-        'errors!'
-      ]
+      const expectedState = {
+        o: 'Whoops',
+        m: 'multiple',
+        g: 'errors!'
+      }
 
       const stateChanges = {
         type: BACKEND_ERROR,
-        payload: { errors: ['errors!'] }
+        payload: { errors: { g: 'errors!' } }
       }
 
       // Deep freeze the state objects to make sure they can't be changed

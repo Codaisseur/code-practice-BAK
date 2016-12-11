@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Api from '~/middleware/api'
 import { Link } from 'react-router'
 import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton'
 import { login } from '~/actions/user'
 
 import './Login.sass'
@@ -27,21 +27,11 @@ const styles = {
   }
 }
 
-function select(state, ownProps) {
-  const isAuthenticated = state.user.authentication_token || false
-  const redirect = ownProps.location.query.redirect || '/'
-  return {
-    isAuthenticated,
-    redirect
-  }
-}
-
 export class LoginContainer extends Component {
   static propTypes = {
     login: PropTypes.func.isRequired,
     replace: PropTypes.func.isRequired,
   }
-
 
   componentWillMount() {
     const { isAuthenticated, replace, redirect } = this.props
@@ -59,13 +49,20 @@ export class LoginContainer extends Component {
     }
   }
 
-
   onSubmit(e) {
     e.preventDefault()
-    if ((!this.refs.email.value || this.refs.email.value === '') || (!this.refs.password.value || this.refs.password.value === '')) {
+    const email = this.refs.email.getValue(),
+      password = this.refs.password.getValue()
+
+    if ((!email || email === '') || (!password || password === '')) {
       return
     }
-    this.props.login(this.refs.email.value, this.refs.password.value)
+
+    this.props.login(email, password)
+  }
+
+  navToSignUp() {
+    this.props.replace('/sign-up')
   }
 
   render() {
@@ -77,6 +74,7 @@ export class LoginContainer extends Component {
           id="email"
           type="email"
           ref="email"
+          value={this.props.email}
           fullWidth={true}
           hintStyle={styles.hintStyle}
           inputStyle={styles.inputStyle}
@@ -88,6 +86,7 @@ export class LoginContainer extends Component {
           id="password"
           type="password"
           ref="password"
+          value={this.props.password}
           fullWidth={true}
           hintStyle={styles.hintStyle}
           inputStyle={styles.inputStyle}
@@ -95,18 +94,27 @@ export class LoginContainer extends Component {
         <br />
 
 
-        <RaisedButton
-          label="Forgot my password"
-          href="/reset-password"
-          primary={true} />
+        <Link to="/sign-up">Sign up</Link>
 
         <RaisedButton
           label="Sign in"
           style={styles.button}
-          onClick={this.onSubmit.bind(this)} />
+          onClick={this.onSubmit.bind(this)}
+          primary={true} />
       </form>
     )
   }
 }
 
-export default connect(select, { login, replace: routerActions.replace })(LoginContainer)
+
+
+const mapStateToProps = (state, ownProps) => {
+  const isAuthenticated = state.user.token || false
+  const redirect = ownProps.location.query.redirect || '/'
+  return {
+    isAuthenticated,
+    redirect
+  }
+}
+
+export default connect(mapStateToProps, { login, replace: routerActions.replace })(LoginContainer)
