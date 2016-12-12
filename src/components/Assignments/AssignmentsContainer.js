@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import Api from '~/middleware/api'
 import routes from '~/middleware/routes'
 import { Link } from 'react-router'
 
