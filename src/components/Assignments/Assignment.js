@@ -6,10 +6,13 @@ class Assignment extends Component {
   }
 
   render() {
-    const { title, assignmentId } = this.props
+    const { title, description, assignmentId } = this.props
 
     return (
+      <div>
       <h1>{title}</h1>
+      <p>{description}</p>
+      </div>
     )
   }
 }
