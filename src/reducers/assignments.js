@@ -24,14 +24,20 @@ const initialState = [
   }
 ]
 
-export default (state = initialState, { type, payload } = {}) => {
 
-  switch(type) {
-    case ASSIGNMENTS_LOADED :
-      return payload
 
+export default function assignments(state = initialState, action) {
+  switch (action.type) {
     case ADD_ASSIGNMENT:
-      return state.concat(payload)
+      return [
+        ...state,
+        {
+          text: action.text,
+        }
+      ]
+
+    case ASSIGNMENTS_LOADED :
+      return action.payload
 
     default:
       return state
