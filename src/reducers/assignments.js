@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_ASSIGNMENT } from '../actions/assignments'
+import { ADD_ASSIGNMENT, ASSIGNMENTS_LOADED } from '../actions/assignments'
 
 const initialState = [
   {
@@ -24,16 +24,14 @@ const initialState = [
   }
 ]
 
-export default function assignments(state = initialState, action) {
-  switch (action.type) {
+export default (state = [], { type, payload } = {}) => {
+  switch(type) {
+    case ASSIGNMENTS_LOADED :
+      return payload
+
     case ADD_ASSIGNMENT:
-      return [
-        ...state,
-        {
-          text: action.text,
-        }
-      ]
+      return state.concat(payload)
+
     default:
       return state
   }
-}
