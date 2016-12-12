@@ -7,11 +7,11 @@ import { Link } from 'react-router'
 import './AssignmentsContainer.sass'
 
 // Components
-import Assignment from './Assignment'
 import Breadcrumb from './Breadcrumb'
 
 // Material UI
 import LinearProgress from 'material-ui/LinearProgress'
+import ListItem from 'material-ui/List/ListItem'
 
 class AssignmentsContainer extends Component {
   static propTypes = {
@@ -21,7 +21,9 @@ class AssignmentsContainer extends Component {
   renderAssignments() {
     return this.props.assignments.map((assignment) => {
       return (
-        <Assignment key={assignment.assignmentId} { ...assignment }/>
+        <ListItem key={assignment.assignmentId} >
+          { assignment.title }
+        </ListItem>
       )
     })
   }
@@ -54,6 +56,7 @@ class AssignmentsContainer extends Component {
 
         <section className="page-container">
           <main className="contained page-content">
+            <h1>Assignments</h1>
             {this.renderAssignments()}
           </main>
         </section>

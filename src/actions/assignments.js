@@ -1,8 +1,8 @@
 export const ADD_ASSIGNMENT = 'ADD_ASSIGNMENT'
 
-export function addAssignment(text) {
+export function addAssignment(assignment) {
   return {
     type: ADD_ASSIGNMENT,
-    text
+    payload: assignment
   }
 }
