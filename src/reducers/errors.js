@@ -2,7 +2,7 @@ import { BACKEND_ERROR, CLEAR_ERRORS } from '~/actions/errors'
 
 export default function updateErrors(state = null, { type, payload } = {}) {
   if(type === BACKEND_ERROR) {
-    return (state || []).concat(payload.error || payload.errors)
+    return Object.assign({}, state || {}, payload.error || payload.errors || payload)
   }
 
   else if(type === CLEAR_ERRORS) {

@@ -17,8 +17,17 @@ class API {
       }));
   }
 
-  service(serviceName) {
-    return this.app.service(serviceName)
+  service(serviceName, authenticated = false) {
+    const theService = this.app.service(serviceName)
+
+    if (authenticated) {
+      return this.app.authenticate()
+      .then((response) => {
+        return theService
+      })
+    }
+
+    return theService
   }
 
   authenticate(user) {
@@ -35,6 +44,6 @@ class API {
   }
 }
 
-const Api = new API()
+const api = new API()
 
-export default Api
+export default api

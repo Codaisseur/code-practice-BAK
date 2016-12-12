@@ -5,8 +5,9 @@ export default function userUpdate(
     switch (type) {
       case USER_LOGGED_IN :
       case USER_RESET_PASSWD :
-        localStorage.setItem('practice.user', JSON.stringify(payload))
-        return payload
+        const user = Object.assign({}, state, payload.data, { token: payload.token })
+        localStorage.setItem('practice.user', JSON.stringify(user))
+        return user
 
       case USER_LOGGED_OUT :
       case USER_LOGIN_FAILED :

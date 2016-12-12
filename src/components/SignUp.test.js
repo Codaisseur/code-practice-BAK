@@ -8,13 +8,13 @@ import { SignUpContainer } from './SignUp'
 chai.use(spies)
 chai.use(chaiEnzyme())
 
-const SignUpProps = {
-  SignUp: chai.spy(),
+const signUpProps = {
+  signUp: chai.spy(),
+  appError: chai.spy(),
   replace: chai.spy(),
  }
 
-const signUp = wrapper(<SignUpContainer { ...SignUpProps } />)
-
+const signUp = wrapper(<SignUpContainer { ...signUpProps } />)
 
 describe('<SignUpContainer />', () => {
   it('renders a form', () => {
@@ -37,28 +37,45 @@ describe('<SignUpContainer />', () => {
   })
 
   describe('form submission', () => {
-    const signUpSpy = chai.spy()
+    const signUpProps = {
+      signUp: chai.spy(),
+      appError: chai.spy(),
+      replace: chai.spy(),
+      email: 'jane@email.com',
+      password: 'verysecret',
+      passwordConfirmation: 'verysecret',
+      firstname: 'Jane',
+      lastname: 'Schmidt'
+     }
 
-    it('should call sign up() upon submitting the form with values', () => {
-      signUp.ref('email').value = 'david@mail.com'
-      signUp.ref('password').value = 'verysecret'
-      signUp.ref('password').value = 'verysecret'
-      signUp.ref('firstname').value = 'John'
-      signUp.ref('lastname').value = 'Smidt'
+    const signUp = wrapper(<SignUpContainer { ...signUpProps } />)
+
+    it('should call signup() upon submitting the form with values', () => {
       signUp.simulate('submit')
-      expect(signUpSpy).to.have.been.called
-        .with.exactly('david@mail.com', 'verysecret', 'verysecret', 'John', 'Smidt')
+      const { email, password, firstname, lastname } = signUpProps
+      expect(signUpProps.signUp).to.have.been.called
+        .with({ email, password, firstname, lastname })
     })
 
-    it('should not call sign up() upon submitting the form without values', () => {
-      signUpSpy.reset()
-      signUp.ref('email').value = null
-      signUp.ref('password').value = null
-      signUp.ref('password').value = null
-      signUp.ref('firstname').value = null
-      signUp.ref('lastname').value = null
-      signUp.simulate('submit')
-      expect(signUpSpy).not.to.have.been.called()
+    context('When the passwords do not match', () => {
+      const signUpProps = {
+        signUp: chai.spy(),
+        appError: chai.spy(),
+        replace: chai.spy(),
+        email: 'jane@email.com',
+        password: 'verysecret',
+        passwordConfirmation: 'verysomethingelse!',
+        firstname: 'Jane',
+        lastname: 'Schmidt'
+       }
+
+      const signUp = wrapper(<SignUpContainer { ...signUpProps } />)
+
+      it('submitting the form should not call signUp()', () => {
+        signUp.simulate('submit')
+        expect(signUpProps.appError).to.have.been.called()
+        expect(signUpProps.signUp).not.to.have.been.called()
+      })
     })
   })
 })

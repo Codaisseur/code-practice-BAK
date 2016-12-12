@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
 
         <div className="right-items-wrapper">
-        <p> &copy; <DateFormatter format="YYYY" /> Codaisseur </p>
+        <p>&copy; <DateFormatter format="YYYY" /> Codaisseur </p>
         </div>
 
       </div>

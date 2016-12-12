@@ -2,20 +2,26 @@
 @import "../assets/styles/base/breakpoints"
 @import "../assets/styles/base/mixins"
 
-.sign-in-form
+.sign-in-form,
+.reset-password-form,
+.sign-up-form
   padding: 8em 2em 2em
 
   p
     margin-bottom: 4em
     font-size: 18px
 
+  .form-error p
+    margin-bottom: 1em
+    color: $red
+
   .actions
     margin-top: 20px
 
-    @include breakpoint($breakpoint-medium)
+  @include breakpoint($breakpoint-medium)
     min-width: 600px
     text-align: center
     position: fixed
-    top: 30%
+    top: 40%
     left: 50%
     transform: translate(-50%, -50%)
