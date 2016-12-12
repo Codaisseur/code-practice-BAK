@@ -24,7 +24,8 @@ const initialState = [
   }
 ]
 
-export default (state = [], { type, payload } = {}) => {
+export default (state = initialState, { type, payload } = {}) => {
+
   switch(type) {
     case ASSIGNMENTS_LOADED :
       return payload
@@ -35,3 +36,4 @@ export default (state = [], { type, payload } = {}) => {
     default:
       return state
   }
+}

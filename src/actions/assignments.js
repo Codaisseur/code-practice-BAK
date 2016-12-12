@@ -8,6 +8,13 @@ export const CREATE_ASSIGNMENT = 'CREATE_ASSIGNMENT'
 
 export const ADD_ASSIGNMENT = 'ADD_ASSIGNMENT'
 
+export function addAssignment(text) {
+  return {
+    type: ADD_ASSIGNMENT,
+    text
+  }
+}
+
 export const fetchAssignments = () => {
   return (dispatch) => {
     dispatch(appLoading)
@@ -29,11 +36,5 @@ export const fetchAssignments = () => {
       type: ASSIGNMENTS_LOADED,
       payload: data
     }
-  }
-
-export function addAssignment(text) {
-  return {
-    type: ADD_ASSIGNMENT,
-    text
   }
 }

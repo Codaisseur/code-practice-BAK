@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Api from '~/middleware/api'
 import routes from '~/middleware/routes'
 import { Link } from 'react-router'
-
+import { assignments } from '~/actions/assignments'
 // Styles
 import './AssignmentsContainer.sass'
 
