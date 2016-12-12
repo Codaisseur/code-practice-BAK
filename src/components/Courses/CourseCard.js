@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import routes from '~/middleware/routes'
 
 // Styles and Material-UI
@@ -7,6 +7,11 @@ import NavButton from '../UI/buttons/NavButton'
 import './CourseCard.sass'
 
 class CourseCard extends PureComponent {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }
+
   render() {
     const { _id, title, description } = this.props
     const coursesPath = routes.coursesPath

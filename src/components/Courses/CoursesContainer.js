@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import routes from '~/middleware/routes'
 import CourseCard from './CourseCard'
@@ -7,6 +7,10 @@ import NavButton from '../UI/buttons/NavButton'
 const coursesPath = routes.coursesPath
 
 class CoursesContainer extends Component {
+  static propTypes = {
+    courses: PropTypes.array.isRequired,
+  }
+
   renderCourses() {
     return this.props.courses.map((course) => {
       return (
