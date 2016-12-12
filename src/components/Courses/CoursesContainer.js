@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { fetchCourses } from '~/actions/courses'
 import routes from '~/middleware/routes'
 import CourseCard from './CourseCard'
 import NavButton from '../UI/buttons/NavButton'
@@ -7,19 +8,13 @@ import NavButton from '../UI/buttons/NavButton'
 const coursesPath = routes.coursesPath
 
 class CoursesContainer extends Component {
-  static propTypes = {
-    courses: PropTypes.array.isRequired,
-  }
-
-  renderCourses() {
-    return this.props.courses.map((course) => {
-      return (
-        <CourseCard key={ course._id } className="card" { ...course }/>
-      )
-    })
+  componentWillMount() {
+    this.props.fetchCourses()
   }
 
   render() {
+    const { courses } = this.props
+
     return (
       <div className="container courses">
         <section className="contained heading">
@@ -27,7 +22,9 @@ class CoursesContainer extends Component {
           <p>These are all the available courses. Start practicing!</p>
         </section>
         <section className="contained-grid">
-          { this.renderCourses() }
+          { courses.map((course, i) => {
+            return <CourseCard key={`course-${course._id}`} { ...course } />
+          })}
         </section>
 
         <NavButton
@@ -40,10 +37,14 @@ class CoursesContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = ({ courses }) => {
   return {
-    courses: state.courses
+    courses,
   }
 }
 
-export default connect(mapStateToProps)(CoursesContainer)
+CoursesContainer.propTypes = {
+  fetchCourses: PropTypes.func.isRequired,
+}
+
+export default connect(mapStateToProps, { fetchCourses })(CoursesContainer)
