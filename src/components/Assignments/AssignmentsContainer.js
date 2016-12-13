@@ -22,7 +22,7 @@ class AssignmentsContainer extends Component {
   renderAssignments() {
     return this.props.assignments.map((assignment) => {
       return (
-        <Assignment key={assignment.assignmentId} { ...assignment }/>
+        <Assignment key={assignment._id} { ...assignment }/>
       )
     })
   }

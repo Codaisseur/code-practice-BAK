@@ -9,11 +9,11 @@ class Assignment extends Component {
   }
 
   render() {
-    const { title, assignmentId } = this.props
+    const { title, _id } = this.props
 
     return (
         <ListItem
-        key={ assignmentId } >
+        key={ _id} >
           {title}
         </ListItem>
     )

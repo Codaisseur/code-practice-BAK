@@ -19,10 +19,13 @@ export const fetchAssignments = () => {
   return (dispatch) => {
     dispatch(appLoading)
 
-    api.get('/courses/courseId/assignmentId')
+    // Api should/might have a service for assignments from which we can 'find' all the assignments
+    // and store it in data
+    // authenticate User is now hardcoded to "true"
+    api.service('assignments', true).find()
       .then((data) => {
         dispatch(appDoneLoading())
-
+        console.log(data)
         if (data.errors) {
           dispatch(fetchAssignmentsFailed(data))
         } else {
