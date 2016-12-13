@@ -18,4 +18,11 @@ describe('CreateCourse />', () => {
   it('renders a form', () => {
     expect(createCourse.find('form')).to.have.length(1)
   })
+
+  it('renders a form that contains certain elements', () => {
+    expect(createCourse).to.have.tagName('form')
+    expect(createCourse).to.have.descendants('#courseName')
+    expect(createCourse).to.have.descendants('#courseDescription')
+    expect(createCourse).to.have.descendants('#createCourse')
+  })
 })

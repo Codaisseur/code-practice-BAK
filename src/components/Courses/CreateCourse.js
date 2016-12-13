@@ -21,16 +21,14 @@ export class CreateCourse extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={ this.save.bind(this) }>
-          <h1>Create New Course</h1>
-          <div>
-            <input id="courseName" type="text" name="title" ref="title" placeholder="Course Name"/>
-            <input id="courseDescription" type="text" name="description" ref="description" placeholder="Course Description"/>
-            <input id="createCourse" type="submit" value="Create Course" />
-          </div>
-        </form>
-      </div>
+      <form onSubmit={ this.save.bind(this) }>
+        <h1>Create New Course</h1>
+        <div>
+          <input id="courseName" type="text" name="title" ref="title" placeholder="Course Name"/>
+          <input id="courseDescription" type="text" name="description" ref="description" placeholder="Course Description"/>
+          <input id="createCourse" type="submit" value="Create Course" />
+        </div>
+      </form>
     )
   }
 }
