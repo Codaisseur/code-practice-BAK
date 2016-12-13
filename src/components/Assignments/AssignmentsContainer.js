@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import './AssignmentsContainer.sass'
 
 // Components
-import Assignment from './Assignment'
+import AssignmentLink from './AssignmentLink'
 import Breadcrumb from './Breadcrumb'
 
 // Material UI
@@ -21,7 +21,7 @@ class AssignmentsContainer extends Component {
     return this.props.assignments.map((assignment) => {
       return (
         <ul key={assignment.assignmentId} >
-            <Assignment title={assignment.title} { ...assignment }/>
+            <AssignmentLink title={assignment.title} { ...assignment }/>
         </ul>
       )
     })

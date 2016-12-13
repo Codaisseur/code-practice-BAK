@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import Assignment from './Assignment'
 
 // Material UI
 import ListItem from 'material-ui/List/ListItem'
@@ -9,9 +10,9 @@ class AssignmentPage extends Component {
     const { title, courseId, assignmentId } = this.props
 
     return (
-      <h1>
-        { title }
-      </h1>
+      <div>
+        <Assignment title='Assignment Title' instructions='Assignment instructions' />
+      </div>
     )
   }
 }

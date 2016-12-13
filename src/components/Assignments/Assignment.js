@@ -1,9 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
-import routes from '~/middleware/routes'
-
-// Material UI
-import ListItem from 'material-ui/List/ListItem'
 
 class Assignment extends Component {
   static propTypes = {
@@ -11,16 +6,13 @@ class Assignment extends Component {
   }
 
   render() {
-    const { title, courseId, assignmentId } = this.props
-    const coursesPath = routes.coursesPath
+    const { title, courseId, assignmentId, instructions } = this.props
 
     return (
-      <Link
-        to={ `${coursesPath}/${courseId}/${assignmentId}/` } >
-        <ListItem>
-          {title}
-        </ListItem>
-      </Link>
+      <div className="assignment">
+        <h1>{title}</h1>
+        <p>{instructions}</p>
+      </div>
     )
   }
 }
