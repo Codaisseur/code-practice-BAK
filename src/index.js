@@ -77,6 +77,7 @@ ReactDOM.render(
         <Route path={routes.coursesPath} component={userIsAuthenticated(CoursesContainer)} />
         <Route path={`${routes.coursesPath}/new`} component={userIsAuthenticated(userIsAdmin(CreateCourse))} />
         <Route path={`${routes.coursesPath}/:courseId`} component={userIsAuthenticated(AssignmentsContainer)} />
+        <Route path={`${routes.coursesPath}/:courseId/:assignmentId`} component={userIsAuthenticated(Assignment)} />
       </Route>
       <Route path="*" component={NotFound}/>
     </Router>

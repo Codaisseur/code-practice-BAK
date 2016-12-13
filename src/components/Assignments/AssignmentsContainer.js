@@ -22,10 +22,13 @@ class AssignmentsContainer extends Component {
     const coursesPath = routes.coursesPath
     return this.props.assignments.map((assignment) => {
       return (
-        <ListItem
-        key={assignment.assignmentId} >
-          {assignment.title}
-        </ListItem>
+        <Link
+          to={ `${coursesPath}/${assignment.courseId}/${assignment.assignmentId}/` } >
+          <ListItem
+          key={assignment.assignmentId} >
+            {assignment.title}
+          </ListItem>
+        </Link>
       )
     })
   }
