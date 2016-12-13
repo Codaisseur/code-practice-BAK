@@ -10,7 +10,7 @@ class Assignment extends Component {
 
     return (
       <div>
-        <h1>Assignment Title</h1>
+        <h1>{ title }</h1>
       </div>
     )
   }
