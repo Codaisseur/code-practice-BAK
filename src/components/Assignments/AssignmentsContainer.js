@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import routes from '~/middleware/routes'
-import { Link } from 'react-router'
 
 // Styles
 import './AssignmentsContainer.sass'
 
 // Components
+import Assignment from './Assignment'
 import Breadcrumb from './Breadcrumb'
 
 // Material UI
@@ -19,16 +18,11 @@ class AssignmentsContainer extends Component {
   }
 
   renderAssignments() {
-    const coursesPath = routes.coursesPath
     return this.props.assignments.map((assignment) => {
       return (
-        <Link
-          to={ `${coursesPath}/${assignment.courseId}/${assignment.assignmentId}/` }
-          key={assignment.assignmentId} >
-          <ListItem>
-            {assignment.title}
-          </ListItem>
-        </Link>
+        <ul key={assignment.assignmentId} >
+            <Assignment title={assignment.title} { ...assignment }/>
+        </ul>
       )
     })
   }
