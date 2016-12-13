@@ -13,7 +13,7 @@ export default function courses(state = [], { type, payload }) {
 
   switch(type) {
     case COURSES_LOADED :
-      return initialState //payload
+      return initialState // payload
 
     case CREATE_COURSE :
       return state.concat(payload)

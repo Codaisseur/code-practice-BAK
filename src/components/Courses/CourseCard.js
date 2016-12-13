@@ -24,7 +24,7 @@ class CourseCard extends PureComponent {
             title={ title }
           />
 
-          <CardText>
+          <CardText className="description">
             { description }
           </CardText>
 

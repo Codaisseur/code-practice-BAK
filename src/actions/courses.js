@@ -30,6 +30,13 @@ const fetchCoursesDone = (data) => {
   }
 }
 
+const fetchCoursesFailed = (data) => {
+  return {
+    type: COURSES_FAILED_LOADING, 
+    payload: data
+  }
+}
+
 export default (newCourse) => {
   return {
     type: CREATE_COURSE,
