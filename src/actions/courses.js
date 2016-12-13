@@ -32,7 +32,7 @@ const fetchCoursesDone = (data) => {
 
 const fetchCoursesFailed = (data) => {
   return {
-    type: COURSES_FAILED_LOADING, 
+    type: COURSES_FAILED_LOADING,
     payload: data
   }
 }

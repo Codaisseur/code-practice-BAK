@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux'
 import { COURSES_LOADED } from '~/actions/courses'
 import { CREATE_COURSE } from '~/actions/courses'
 
