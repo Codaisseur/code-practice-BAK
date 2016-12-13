@@ -44,7 +44,6 @@ class API {
   }
 }
 
-
 const api = new API()
 
 export default api
