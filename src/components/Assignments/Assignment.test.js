@@ -10,6 +10,6 @@ const assignment = wrapper(<Assignment title='Assignment Title' />)
 
 describe('<Assignment />', () => {
   it('renders a title', () => {
-    expect(assignment.find('h1')).to.have.text('Assignment Title')
+    expect(assignment.find('h2')).to.have.text('Assignment Title')
   })
 })

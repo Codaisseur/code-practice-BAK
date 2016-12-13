@@ -10,7 +10,7 @@ class Assignment extends Component {
 
     return (
       <div className="assignment">
-        <h1>{title}</h1>
+        <h2>{title}</h2>
         <p>{instructions}</p>
       </div>
     )

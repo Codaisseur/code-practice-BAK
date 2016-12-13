@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 // Styles
-import './AssignmentsContainer.sass'
+import './Assignments.sass'
 
 // Components
 import AssignmentLink from './AssignmentLink'
