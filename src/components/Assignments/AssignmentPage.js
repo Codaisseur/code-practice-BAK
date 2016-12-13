@@ -6,9 +6,11 @@ import ListItem from 'material-ui/List/ListItem'
 class AssignmentPage extends Component {
 
   render() {
+    const { title, courseId, assignmentId } = this.props
+
     return (
       <h1>
-        Assignment title
+        { title }
       </h1>
     )
   }
