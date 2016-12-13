@@ -25,4 +25,8 @@ describe('CreateCourse />', () => {
     expect(createCourse).to.have.descendants('#courseDescription')
     expect(createCourse).to.have.descendants('#createCourse')
   })
+
+  it('has three input fields', () => {
+    expect(createCourse.find('input')).to.have.length(3)
+  })
 })
