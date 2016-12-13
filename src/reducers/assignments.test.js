@@ -13,21 +13,25 @@ describe('assignments reducer', () => {
       assignments(undefined, {})
     ).to.eql([
       {
+        courseId: 1,
         assignmentId: 1,
         title: 'Your First Web Page',
         text: 'Have a look at this exercise!'
       },
       {
+        courseId: 1,
         assignmentId: 2,
         title: 'Installing something',
         text: 'Have a look at this other exercise!'
       },
       {
+        courseId: 1,
         assignmentId: 3,
         title: 'Installing some more',
         text: 'Have a look at this exercise!'
       },
       {
+        courseId: 1,
         assignmentId: 4,
         title: 'Go!',
         text: 'Have a look at this exercise!'
