@@ -3,9 +3,7 @@ import { appLoading, appDoneLoading } from './api'
 
 export const ASSIGNMENTS_LOADING = 'ASSIGNMENTS_LOADING'
 export const ASSIGNMENTS_LOADED = 'ASSIGNMENTS_LOADED'
-export const ASSIGNMENST_FAILED_LOADING = 'ASSINGMENST_FAILED_LOADING'
-export const CREATE_ASSIGNMENT = 'CREATE_ASSIGNMENT'
-
+export const ASSIGNMENTS_FAILED_LOADING = 'ASSINGMENTS_FAILED_LOADING'
 export const ADD_ASSIGNMENT = 'ADD_ASSIGNMENT'
 
 export function addAssignment(text) {
@@ -32,6 +30,13 @@ export const fetchAssignments = () => {
           dispatch(fetchAssignmentsDone(data))
         }
       })
+  }
+
+  const fetchAssignmentsFailed = (data) => {
+    return {
+      type: ASSIGNMENTS_FAILED_LOADING,
+      payload: data
+    }
   }
 
   const fetchAssignmentsDone = (data) => {
