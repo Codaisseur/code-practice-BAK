@@ -23,9 +23,9 @@ class AssignmentsContainer extends Component {
     return this.props.assignments.map((assignment) => {
       return (
         <Link
-          to={ `${coursesPath}/${assignment.courseId}/${assignment.assignmentId}/` } >
-          <ListItem
+          to={ `${coursesPath}/${assignment.courseId}/${assignment.assignmentId}/` }
           key={assignment.assignmentId} >
+          <ListItem>
             {assignment.title}
           </ListItem>
         </Link>
