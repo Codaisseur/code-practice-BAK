@@ -17,13 +17,22 @@ export const fetchAssignments = () => {
   return (dispatch) => {
     dispatch(appLoading)
 
-    // Api should/might have a service for assignments from which we can 'find' all the assignments
-    // and store it in data
-    // authenticate User is now hardcoded to "true"
-    api.service('assignments', true).find()
+    //J: At this point the user should be logged in and thus be authenticated
+    //J: if the user is logged in there should be a JWT (token) else user is not authenticated (false)
+    const authenticatedUser = () => {
+      const isAuthenticated = !!state.user.token
+        if (isAuthenticated) {
+          return true
+        } else {
+          return false
+        }
+    }
+
+    //J: Api should/might have a service for assignments from which we can 'find' all the assignments
+    //J: and store it in data
+    api.service('assignments', authenticatedUser).find()
       .then((data) => {
         dispatch(appDoneLoading())
-        console.log(data)
         if (data.errors) {
           dispatch(fetchAssignmentsFailed(data))
         } else {
