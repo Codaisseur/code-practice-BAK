@@ -10,7 +10,7 @@ export const fetchCourses = () => {
   return (dispatch) => {
     dispatch(appLoading())
 
-    api.get('/courses')
+    api.service('courses').find()
       .then((data) => {
         dispatch(appDoneLoading())
 

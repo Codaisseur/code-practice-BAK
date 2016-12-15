@@ -42,12 +42,6 @@ class API {
   signOut() {
     return this.app.logout()
   }
-
-  get(path) {
-    return fetch(path, {
-      method: 'GET',
-    })
-  }
 }
 
 const api = new API()
