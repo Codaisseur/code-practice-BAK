@@ -7,29 +7,25 @@ export const ASSIGNMENTS_FAILED_LOADING = 'ASSINGMENTS_FAILED_LOADING'
 export const ADD_ASSIGNMENT = 'ADD_ASSIGNMENT'
 
 export const fetchAssignments = () => {
+  //JM: At this point the user should be logged in and thus be authenticated
+  //JM: if the user is logged in there should be a token: Key = practice.user, else user is not logged in = not authenticated (false)
+  const userToken = !!localStorage.getItem( 'practice.user' )
+
   return (dispatch) => {
     dispatch(appLoading())
 
-    //JM: At this point the user should be logged in and thus be authenticated
-    //JM: if the user is logged in there should be a token: Key = practice.user, else user is not logged in = not authenticated (false)
-    const isAuthenticated = () => {
-      const userToken = !!localStorage.getItem( 'practice.user' )
-       if (userToken) {
-         return true
-       } else {
-         return false
-       }
-     }
-
-    api.service('assignments', isAuthenticated()).find()
-      .then((data) => {
-        dispatch(appDoneLoading())
-        if (data.errors) {
-          dispatch(fetchAssignmentsFailed(data))
-        } else {
-          dispatch(fetchAssignmentsDone(data))
-        }
-    } )
+    if (userToken) {
+      api.service('assignments').find()
+        .then((data) => {
+          dispatch(appDoneLoading())
+          if (data.errors) {
+            dispatch(fetchAssignmentsFailed(data))
+          } else {
+            dispatch(fetchAssignmentsDone(data))
+          }
+      } )
+    } else { return state
+    }
   }
 }
 
