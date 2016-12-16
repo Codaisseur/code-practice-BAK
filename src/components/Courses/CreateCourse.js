@@ -1,15 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import createCourse from '../../actions/courses'
+import { createCourse } from '../../actions/courses'
 
 export class CreateCourse extends Component {
+  static propTypes = {
+    createCourse: PropTypes.func.isRequired,
+  }
 
   save(event) {
     event.preventDefault()
 
     const { createCourse } = this.props
-    const title = this.refs.title.value
-    const description = this.refs.description.value
+    const { title, description } = this.refs
 
     const newCourse = {
       title,
@@ -24,8 +26,8 @@ export class CreateCourse extends Component {
       <form onSubmit={ this.save.bind(this) }>
         <h1>Create New Course</h1>
         <div>
-          <input id="courseName" type="text" name="title" ref="title" placeholder="Course Name"/>
-          <input id="courseDescription" type="text" name="description" ref="description" placeholder="Course Description"/>
+          <input id="courseName" type="text" value={this.props.title} ref="title" placeholder="Course Name"/>
+          <input id="courseDescription" type="text" value={this.props.description} ref="description" placeholder="Course Description"/>
           <input id="createCourse" type="submit" value="Create Course" />
         </div>
       </form>
@@ -33,4 +35,11 @@ export class CreateCourse extends Component {
   }
 }
 
-export default connect(null, { createCourse })(CreateCourse)
+const mapStateToProps = ({ title, description }) => {
+  return {
+    title,
+    description
+  }
+}
+
+export default connect(mapStateToProps, { createCourse })(CreateCourse)
