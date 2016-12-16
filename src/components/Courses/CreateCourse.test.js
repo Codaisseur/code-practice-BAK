@@ -31,7 +31,14 @@ describe('CreateCourse />', () => {
     expect(createCourse.find('input')).to.have.length(2)
   })
 
-  it('has a button', () => {
+  it('has a submit button', () => {
     expect(createCourse.find('RaisedButton')).to.have.text('Create Course')
+    expect(createCourse.find('RaisedButton')).prop('type').to.equal('submit')
+  })
+
+  it('renders children when passed in', () => {
+    expect(createCourse.find('#courseName')).to.have.tagName('input')
+    expect(createCourse.find('#courseName').prop('id')).to.equal('courseName')
+    expect(createCourse.find('#courseName').prop('type')).to.equal('text')
   })
 })
