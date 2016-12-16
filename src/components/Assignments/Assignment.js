@@ -9,13 +9,13 @@ class Assignment extends Component {
   }
 
   render() {
-    const { title, assignmentId } = this.props
+    const { title, courseId, assignmentId, instructions } = this.props
 
     return (
-        <ListItem
-        key={ assignmentId } >
-          {title}
-        </ListItem>
+      <div className="assignment">
+        <h2>{title}</h2>
+        <p>{instructions}</p>
+      </div>
     )
   }
 }

@@ -1,17 +1,19 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import Api from '~/middleware/api'
 import routes from '~/middleware/routes'
 import { Link } from 'react-router'
-
+import { assignments } from '~/actions/assignments'
 // Styles
-import './AssignmentsContainer.sass'
+import './Assignments.sass'
 
 // Components
-import Assignment from './Assignment'
+import AssignmentLink from './AssignmentLink'
 import Breadcrumb from './Breadcrumb'
 
 // Material UI
 import LinearProgress from 'material-ui/LinearProgress'
+import ListItem from 'material-ui/List/ListItem'
 
 class AssignmentsContainer extends Component {
   static propTypes = {
@@ -21,7 +23,9 @@ class AssignmentsContainer extends Component {
   renderAssignments() {
     return this.props.assignments.map((assignment) => {
       return (
-        <Assignment key={assignment.assignmentId} { ...assignment }/>
+        <ul key={assignment.assignmentId} >
+            <AssignmentLink title={assignment.title} { ...assignment }/>
+        </ul>
       )
     })
   }
@@ -54,7 +58,7 @@ class AssignmentsContainer extends Component {
 
         <section className="page-container">
           <main className="contained page-content">
-            {this.renderAssignments()}
+            {this.renderAssignments() }
           </main>
         </section>
       </div>

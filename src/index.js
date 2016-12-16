@@ -53,7 +53,7 @@ import StudentProfile from './components/StudentProfile'
 import CoursesContainer from './components/Courses/CoursesContainer'
 import CreateCourse from './components/Courses/CreateCourse'
 import AssignmentsContainer from './components/Assignments/AssignmentsContainer'
-import Assignment from './components/Assignments/Assignment'
+import AssignmentPage from './components/Assignments/AssignmentPage'
 
 import NotFound from './NotFound'
 
@@ -80,6 +80,7 @@ ReactDOM.render(
         <Route path={routes.coursesPath} component={userIsAuthenticated(CoursesContainer)} />
         <Route path={`${routes.coursesPath}/new`} component={userIsAuthenticated(userIsAdmin(CreateCourse))} />
         <Route path={`${routes.coursesPath}/:courseId`} component={userIsAuthenticated(AssignmentsContainer)} />
+        <Route path={`${routes.coursesPath}/:courseId/:assignmentId`} component={userIsAuthenticated(AssignmentPage)} />
       </Route>
       <Route path="*" component={NotFound}/>
     </Router>

@@ -8,26 +8,57 @@ import { ADD_ASSIGNMENT } from '../actions/assignments'
 chai.use(chaiEnzyme())
 
 describe('assignments reducer', () => {
+  const initialState = [
+    {
+      courseId: 1,
+      assignmentId: 1,
+      title: 'Your First Web Page',
+      text: 'Have a look at this exercise!'
+    },
+    {
+      courseId: 1,
+      assignmentId: 2,
+      title: 'Installing something',
+      text: 'Have a look at this other exercise!'
+    },
+    {
+      courseId: 1,
+      assignmentId: 3,
+      title: 'Installing some more',
+      text: 'Have a look at this exercise!'
+    },
+    {
+      courseId: 1,
+      assignmentId: 4,
+      title: 'Go!',
+      text: 'Have a look at this exercise!'
+    }
+  ]
+
   it('should return the initial state', () => {
     expect(
-      assignments(undefined, {})
+      assignments( initialState /* state */, {} /* action */)
     ).to.eql([
       {
+        courseId: 1,
         assignmentId: 1,
         title: 'Your First Web Page',
         text: 'Have a look at this exercise!'
       },
       {
+        courseId: 1,
         assignmentId: 2,
         title: 'Installing something',
         text: 'Have a look at this other exercise!'
       },
       {
+        courseId: 1,
         assignmentId: 3,
         title: 'Installing some more',
         text: 'Have a look at this exercise!'
       },
       {
+        courseId: 1,
         assignmentId: 4,
         title: 'Go!',
         text: 'Have a look at this exercise!'
@@ -37,18 +68,16 @@ describe('assignments reducer', () => {
 
   it('should handle ADD_ASSIGNMENT', () => {
     expect(
-      assignments([], {
+      assignments(initialState, {
         type: ADD_ASSIGNMENT,
-        text: 'React'
+        payload: [{
+          assignmentId: 5,
+          title: 'DifficultStuff!',
+          text: 'React' }]
       })
-    ).to.eql([{ text: 'React' }])
-
-    expect(
-      assignments([{ text: 'Ruby on Rails' }], {
-          type: ADD_ASSIGNMENT,
-          text: 'React'
-        })
-      ).to.eql([{ text: 'Ruby on Rails' }, { text: 'React' }]
-    )
+    ).to.eql([{
+      assignmentId: 5,
+      title: 'DifficultStuff!',
+      text: 'React' }])
   })
 })
