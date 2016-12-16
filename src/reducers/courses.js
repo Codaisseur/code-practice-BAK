@@ -10,7 +10,7 @@ const initialState = [
   { _id: 5, title: 'Java', description: 'This course will never exist...' }
 ]
 
-export default function courses(state = [], { type, payload }) {
+export default function courses(state = initialState, { type, payload }) {
 
   switch(type) {
     case COURSES_LOADED :

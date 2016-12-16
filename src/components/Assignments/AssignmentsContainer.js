@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Api from '~/middleware/api'
 import routes from '~/middleware/routes'
 import { Link } from 'react-router'
-import { assignments } from '~/actions/assignments'
+import { fetchAssignments } from '~/actions/assignments'
 // Styles
 import './Assignments.sass'
 
@@ -16,8 +15,13 @@ import LinearProgress from 'material-ui/LinearProgress'
 import ListItem from 'material-ui/List/ListItem'
 
 class AssignmentsContainer extends Component {
+  componentWillMount() {
+    this.props.fetchAssignments()
+  }
+
   static propTypes = {
     assignments: PropTypes.array.isRequired,
+    fetchAssignments: PropTypes.func.isRequired,
   }
 
   renderAssignments() {
@@ -72,4 +76,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(AssignmentsContainer)
+export default connect(mapStateToProps, { fetchAssignments })(AssignmentsContainer)

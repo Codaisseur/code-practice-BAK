@@ -6,16 +6,9 @@ export const ASSIGNMENTS_LOADED = 'ASSIGNMENTS_LOADED'
 export const ASSIGNMENTS_FAILED_LOADING = 'ASSINGMENTS_FAILED_LOADING'
 export const ADD_ASSIGNMENT = 'ADD_ASSIGNMENT'
 
-export function addAssignment(text) {
-  return {
-    type: ADD_ASSIGNMENT,
-    text
-  }
-}
-
 export const fetchAssignments = () => {
   return (dispatch) => {
-    dispatch(appLoading)
+    dispatch(appLoading())
 
     //JM: At this point the user should be logged in and thus be authenticated
     //JM: if the user is logged in there should be a token: Key = practice.user, else user is not logged in = not authenticated (false)
@@ -28,7 +21,7 @@ export const fetchAssignments = () => {
        }
      }
 
-    api.service('assignments', isAuthenticated).find()
+    api.service('assignments', isAuthenticated()).find()
       .then((data) => {
         dispatch(appDoneLoading())
         if (data.errors) {
@@ -36,20 +29,27 @@ export const fetchAssignments = () => {
         } else {
           dispatch(fetchAssignmentsDone(data))
         }
-      })
+    } )
   }
+}
 
-  const fetchAssignmentsFailed = (data) => {
-    return {
-      type: ASSIGNMENTS_FAILED_LOADING,
-      payload: data
-    }
+const fetchAssignmentsFailed = (data) => {
+  return {
+    type: ASSIGNMENTS_FAILED_LOADING,
+    payload: data
   }
+}
 
-  const fetchAssignmentsDone = (data) => {
-    return {
-      type: ASSIGNMENTS_LOADED,
-      payload: data
-    }
+const fetchAssignmentsDone = (data) => {
+  return {
+    type: ASSIGNMENTS_LOADED,
+    payload: data
+  }
+}
+
+export function addAssignment(text) {
+  return {
+    type: ADD_ASSIGNMENT,
+    text
   }
 }
