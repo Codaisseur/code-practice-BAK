@@ -18,18 +18,29 @@ export const fetchAssignments = () => {
     dispatch(appLoading)
 
     //J: At this point the user should be logged in and thus be authenticated
-    //J: if the user is logged in there should be a JWT (token) else user is not authenticated (false)
-    const authenticatedUser = () => {
-      const isAuthenticated = !!state.user.token
-        if (isAuthenticated) {
-          return true
-        } else {
-          return false
-        }
-    }
+    //J: if the user is logged in there should be a token: Key = practice.user, else user is not logged in = not authenticated (false)
+  const authenticatedUser = () => {
+    const userToken = !!localStorage.getItem( 'practice.user' )
+     if (userToken) {
+       return true
+     } else {
+       return false
+     }
+   }
 
-    //J: Api should/might have a service for assignments from which we can 'find' all the assignments
-    //J: and store it in data
+// OR
+//J: getting the token out of localStorage and then read it
+//J: to get the user ID in the token and compare it with the user ID in the redux store
+
+// const authenticatedUser = () => {
+//   const userToken = JSON.parse( localStorage.getItem( 'practice.user' ) )
+//     if (userToken._id === user._id) {
+//       return true
+//     } else {
+//       return false
+//     }
+//   }
+
     api.service('assignments', authenticatedUser).find()
       .then((data) => {
         dispatch(appDoneLoading())
