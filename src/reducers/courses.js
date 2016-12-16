@@ -1,4 +1,6 @@
-import { CREATE_COURSE } from '../actions/courses'
+import { combineReducers } from 'redux'
+import { COURSES_LOADED } from '~/actions/courses'
+import { CREATE_COURSE } from '~/actions/courses'
 
 const initialState = [
   { _id: 1, title: 'Ruby', description: 'Ruby is awesome' },
@@ -8,9 +10,13 @@ const initialState = [
   { _id: 5, title: 'Java', description: 'This course will never exist...' }
 ]
 
-export default (state = initialState, { type, payload } = {}) => {
+export default function courses(state = [], { type, payload }) {
+
   switch(type) {
-    case CREATE_COURSE:
+    case COURSES_LOADED :
+      return initialState // payload
+
+    case CREATE_COURSE :
       return state.concat(payload)
 
     default:

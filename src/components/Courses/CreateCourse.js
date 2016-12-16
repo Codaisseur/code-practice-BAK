@@ -9,9 +9,11 @@ export class CreateCourse extends Component {
 
     const { createCourse } = this.props
     const title = this.refs.title.value
+    const description = this.refs.description.value
 
     const newCourse = {
       title,
+      description,
     }
 
     createCourse(newCourse)
@@ -19,15 +21,14 @@ export class CreateCourse extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={ this.save.bind(this) }>
-          <h1>Create New Course</h1>
-          <div>
-            <input id="courseName" type="text" name="title" ref="title" placeholder="Course Name"/>
-            <input id="createCourse" type="submit" value="Create Course" />
-          </div>
-        </form>
-      </div>
+      <form onSubmit={ this.save.bind(this) }>
+        <h1>Create New Course</h1>
+        <div>
+          <input id="courseName" type="text" name="title" ref="title" placeholder="Course Name"/>
+          <input id="courseDescription" type="text" name="description" ref="description" placeholder="Course Description"/>
+          <input id="createCourse" type="submit" value="Create Course" />
+        </div>
+      </form>
     )
   }
 }
