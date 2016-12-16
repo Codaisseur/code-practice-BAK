@@ -15,8 +15,9 @@ const createCourseProps = {
 const createCourse = wrapper(<CreateCourse { ...createCourseProps } />)
 
 describe('CreateCourse />', () => {
-  it('renders a form', () => {
+  it('renders a form with a card', () => {
     expect(createCourse.find('form')).to.have.length(1)
+    expect(createCourse.find('form')).to.have.descendants('Card')
   })
 
   it('renders a form that contains certain elements', () => {
