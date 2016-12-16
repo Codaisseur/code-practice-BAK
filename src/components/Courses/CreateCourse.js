@@ -52,7 +52,8 @@ export class CreateCourse extends Component {
             id="createCourse"
             type="submit"
             label="Create Course"
-            value="Create Course" />
+            value="Create Course"
+            primary={true}/>
         </Card>
       </form>
     )
