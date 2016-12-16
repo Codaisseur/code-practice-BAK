@@ -1,9 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+<<<<<<< HEAD
+
+=======
 import Api from '~/middleware/api'
 import routes from '~/middleware/routes'
 import { Link } from 'react-router'
 import { assignments } from '~/actions/assignments'
+>>>>>>> b1bae789fbf49896c7666c99ede26828fdeafb2c
 // Styles
 import './Assignments.sass'
 
@@ -23,9 +27,13 @@ class AssignmentsContainer extends Component {
   renderAssignments() {
     return this.props.assignments.map((assignment) => {
       return (
+<<<<<<< HEAD
         <ul key={assignment.assignmentId} >
             <AssignmentLink title={assignment.title} { ...assignment }/>
         </ul>
+=======
+        <Assignment key={assignment._id} { ...assignment }/>
+>>>>>>> b1bae789fbf49896c7666c99ede26828fdeafb2c
       )
     })
   }
