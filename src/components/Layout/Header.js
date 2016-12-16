@@ -57,6 +57,10 @@ export class Header extends Component {
     this.handleNavTo('/courses')
   }
 
+  handleUserProfile() {
+    this.handleNavTo('/profile')
+  }
+
   handleAdminPlanning() {
     this.handleNavTo('/admin')
   }
@@ -135,7 +139,7 @@ export class Header extends Component {
               targetOrigin={{horizontal: 'right', vertical: 'top'}}
               anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             >
-              <MenuItem primaryText="Profile" />
+              <MenuItem primaryText="Profile" onClick={ this.handleUserProfile.bind(this) } />
               <MenuItem primaryText="Sign out" onClick={ this.handleLogout.bind(this) } />
             </IconMenu> : null
           }
