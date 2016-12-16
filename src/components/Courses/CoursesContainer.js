@@ -16,8 +16,8 @@ class CoursesContainer extends Component {
     const { courses } = this.props
 
     return (
-      <div className="container courses">
-        <section className="contained heading">
+      <div className="container-courses">
+        <section className="contained-heading">
           <h1>Courses</h1>
           <p>These are all the available courses. Start practicing!</p>
         </section>
