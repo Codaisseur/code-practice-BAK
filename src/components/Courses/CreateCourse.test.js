@@ -9,14 +9,15 @@ chai.use(spies)
 chai.use(chaiEnzyme())
 
 const createCourseProps = {
-  newCourse: chai.spy()
+  createCourse: chai.spy(),
 }
 
 const createCourse = wrapper(<CreateCourse { ...createCourseProps } />)
 
 describe('CreateCourse />', () => {
-  it('renders a form', () => {
+  it('renders a form with a card', () => {
     expect(createCourse.find('form')).to.have.length(1)
+    expect(createCourse.find('form')).to.have.descendants('Card')
   })
 
   it('renders a form that contains certain elements', () => {
@@ -26,7 +27,18 @@ describe('CreateCourse />', () => {
     expect(createCourse).to.have.descendants('#createCourse')
   })
 
-  it('has three input fields', () => {
-    expect(createCourse.find('input')).to.have.length(3)
+  it('has two input fields', () => {
+    expect(createCourse.find('input')).to.have.length(2)
+  })
+
+  it('has a submit button', () => {
+    expect(createCourse.find('RaisedButton')).to.have.text('Create Course')
+    expect(createCourse.find('RaisedButton')).prop('type').to.equal('submit')
+  })
+
+  it('renders children when passed in', () => {
+    expect(createCourse.find('#courseName')).to.have.tagName('input')
+    expect(createCourse.find('#courseName').prop('id')).to.equal('courseName')
+    expect(createCourse.find('#courseName').prop('type')).to.equal('text')
   })
 })

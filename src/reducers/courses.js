@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { COURSES_LOADED } from '~/actions/courses'
-import { CREATE_COURSE } from '~/actions/courses'
+import { COURSE_CREATED } from '~/actions/courses'
 
 const initialState = [
   { _id: 1, title: 'Ruby', description: 'Ruby is awesome' },
@@ -16,7 +16,7 @@ export default function courses(state = [], { type, payload }) {
     case COURSES_LOADED :
       return initialState // payload
 
-    case CREATE_COURSE :
+    case COURSE_CREATED :
       return state.concat(payload)
 
     default:
