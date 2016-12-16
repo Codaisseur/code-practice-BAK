@@ -17,31 +17,18 @@ export const fetchAssignments = () => {
   return (dispatch) => {
     dispatch(appLoading)
 
-    //J: At this point the user should be logged in and thus be authenticated
-    //J: if the user is logged in there should be a token: Key = practice.user, else user is not logged in = not authenticated (false)
-  const authenticatedUser = () => {
-    const userToken = !!localStorage.getItem( 'practice.user' )
-     if (userToken) {
-       return true
-     } else {
-       return false
+    //JM: At this point the user should be logged in and thus be authenticated
+    //JM: if the user is logged in there should be a token: Key = practice.user, else user is not logged in = not authenticated (false)
+    const isAuthenticated = () => {
+      const userToken = !!localStorage.getItem( 'practice.user' )
+       if (userToken) {
+         return true
+       } else {
+         return false
+       }
      }
-   }
 
-// OR
-//J: getting the token out of localStorage and then read it
-//J: to get the user ID in the token and compare it with the user ID in the redux store
-
-// const authenticatedUser = () => {
-//   const userToken = JSON.parse( localStorage.getItem( 'practice.user' ) )
-//     if (userToken._id === user._id) {
-//       return true
-//     } else {
-//       return false
-//     }
-//   }
-
-    api.service('assignments', authenticatedUser).find()
+    api.service('assignments', isAuthenticated).find()
       .then((data) => {
         dispatch(appDoneLoading())
         if (data.errors) {
