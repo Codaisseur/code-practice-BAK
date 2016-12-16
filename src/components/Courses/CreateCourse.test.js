@@ -9,7 +9,7 @@ chai.use(spies)
 chai.use(chaiEnzyme())
 
 const createCourseProps = {
-  newCourse: chai.spy()
+  createCourse: chai.spy(),
 }
 
 const createCourse = wrapper(<CreateCourse { ...createCourseProps } />)
@@ -26,7 +26,11 @@ describe('CreateCourse />', () => {
     expect(createCourse).to.have.descendants('#createCourse')
   })
 
-  it('has three input fields', () => {
-    expect(createCourse.find('input')).to.have.length(3)
+  it('has two input fields', () => {
+    expect(createCourse.find('input')).to.have.length(2)
+  })
+
+  it('has a button', () => {
+    expect(createCourse.find('RaisedButton')).to.have.text('Create Course')
   })
 })
