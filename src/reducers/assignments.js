@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_ASSIGNMENT, ASSIGNMENTS_LOADED, ASSIGNMENTS_FAILED_LOADING } from '../actions/assignments'
+import { ADD_ASSIGNMENT, ASSIGNMENTS_LOADED, ASSIGNMENTS_FAILED_LOADING, USER_NOT_AUTHENTICATED } from '../actions/assignments'
 
 const initialState = [
   {
@@ -37,6 +37,9 @@ export default (state = initialState, { type, payload } = {}) => {
       return payload
 
     case ASSIGNMENTS_FAILED_LOADING :
+      return payload
+
+    case USER_NOT_AUTHENTICATED :
       return payload
 
     default:
